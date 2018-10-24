@@ -1,0 +1,28 @@
+# The real-time thread scheduling configuration parameters
+# These parameters will be applied to all audio real-time
+# processing threads. The application has to have the permissions
+# to change the scheduling parameters
+# Possible values for policy:
+#     fifo, rr, cfs
+# Possible values for priority:
+#     0-99
+# Values > 0 are only possible for real-time schedulers fifo and rr
+# Possible values for cpu_affinity:
+# 0 - max number cores
+# The real-time threads will only be scheduled on the given cores if the
+# cpu_affinity is set. If it is not set the threads will be scheduled
+# according to the scheduler settings on any core
+[scheduling.rt]
+policy=fifo
+priority=20
+#cpu_affinity=
+
+# All shared memory files are created using the following group name
+[shm]
+group=ias_audio
+
+# Specific configuration options for routing zones 
+[routingzone]
+runner_threads.MyRoutingZone1=enabled
+runner_threads.MyRoutingZone25=enabled
+runner_threads.19234_sink_I=enabled

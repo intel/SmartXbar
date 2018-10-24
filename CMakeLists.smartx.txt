@@ -1,0 +1,425 @@
+#
+# Copyright (C) 2018 Intel Corporation.All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#
+#------------------------------------------------------------------
+# ias-audio-smartx
+#------------------------------------------------------------------
+add_library( ias-audio-smartx SHARED
+  private/src/smartx/IasSmartX.cpp
+  private/src/smartx/IasSmartXPriv.cpp
+  private/src/smartx/IasRoutingImpl.cpp
+  private/src/smartx/IasSetupImpl.cpp
+  private/src/smartx/IasProcessingImpl.cpp
+  private/src/smartx/IasDebugImpl.cpp
+  private/src/smartx/IasSetupHelper.cpp
+  private/src/smartx/IasConfiguration.cpp
+  private/src/smartx/IasSmartXClient.cpp
+  private/src/smartx/IasEvent.cpp
+  private/src/smartx/IasConnectionEvent.cpp
+  private/src/smartx/IasSetupEvent.cpp
+  private/src/smartx/IasEventHandler.cpp
+  private/src/smartx/IasToString.cpp
+  private/src/smartx/IasEventProvider.cpp
+  private/src/smartx/IasConfigFile.cpp
+  private/src/smartx/IasThreadNames.cpp
+  private/src/smartx/IasProperties.cpp
+  private/src/smartx/IasDebugMutexDecorator.cpp
+  private/src/smartx/IasProcessingMutexDecorator.cpp
+  private/src/smartx/IasRoutingMutexDecorator.cpp
+  private/src/smartx/IasSetupMutexDecorator.cpp
+  private/src/smartx/IasDecoratorGuard.cpp
+
+  private/src/alsahandler/IasAlsaHandler.cpp
+  private/src/alsahandler/IasAlsaHandlerWorkerThread.cpp
+
+  private/src/model/IasAudioPort.cpp
+  private/src/model/IasAudioDevice.cpp
+  private/src/model/IasAudioSinkDevice.cpp
+  private/src/model/IasAudioSourceDevice.cpp
+  private/src/model/IasRoutingZone.cpp
+  private/src/model/IasRoutingZoneWorkerThread.cpp
+  private/src/model/IasAudioPin.cpp
+  private/src/model/IasPipeline.cpp
+  private/src/model/IasProcessingModule.cpp
+
+  private/src/switchmatrix/IasSwitchMatrix.cpp
+  private/src/switchmatrix/IasBufferTask.cpp
+  private/src/switchmatrix/IasSwitchMatrixJob.cpp
+
+  private/src/rtprocessingfwx/IasAudioChannelBundle.cpp
+  private/src/rtprocessingfwx/IasGenericAudioComp.cpp
+  private/src/rtprocessingfwx/IasGenericAudioCompCore.cpp
+  private/src/rtprocessingfwx/IasBaseAudioStream.cpp
+  private/src/rtprocessingfwx/IasAudioStream.cpp
+  private/src/rtprocessingfwx/IasBundleAssignment.cpp
+  private/src/rtprocessingfwx/IasBundledAudioStream.cpp
+  private/src/rtprocessingfwx/IasAudioChain.cpp
+  private/src/rtprocessingfwx/IasAudioChainEnvironment.cpp
+  private/src/rtprocessingfwx/IasGenericAudioCompConfig.cpp
+  private/src/rtprocessingfwx/IasBundleSequencer.cpp
+  private/src/rtprocessingfwx/IasStreamParams.cpp
+  private/src/rtprocessingfwx/IasSimpleAudioStream.cpp
+  private/src/rtprocessingfwx/IasPluginEngine.cpp
+  private/src/rtprocessingfwx/IasAudioBuffer.cpp
+  private/src/rtprocessingfwx/IasAudioBufferPool.cpp
+  private/src/rtprocessingfwx/IasAudioBufferPoolHandler.cpp
+  private/src/rtprocessingfwx/IasPluginLibrary.cpp
+  private/src/rtprocessingfwx/IasCmdDispatcher.cpp
+  private/src/rtprocessingfwx/IasProcessingTypes.cpp
+  private/src/rtprocessingfwx/IasModuleInterface.cpp
+  private/src/rtprocessingfwx/IasModuleLoader.cpp
+
+  private/src/diagnostic/IasDiagnostic.cpp
+  private/src/diagnostic/IasDiagnosticStream.cpp
+  private/src/diagnostic/IasDiagnosticLogWriter.cpp
+)
+
+set_target_properties( ias-audio-smartx PROPERTIES VERSION ${AUDIO_SMARTX_VERSION_STRING} SOVERSION ${AUDIO_SMARTX_VERSION_MAJOR} )
+
+target_compile_options( ias-audio-smartx PUBLIC -ffast-math )
+target_compile_options( ias-audio-smartx PUBLIC --std=c++11 )
+target_compile_options( ias-audio-smartx PUBLIC -msse )
+target_compile_options( ias-audio-smartx PUBLIC -msse2 )
+target_compile_options( ias-audio-smartx PUBLIC -O3 )
+
+# for version header
+target_include_directories( ias-audio-smartx PRIVATE ${CMAKE_CURRENT_BINARY_DIR} )
+
+target_include_directories( ias-audio-smartx PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/private/inc/smartx )
+
+# Required to build tools/vads
+target_include_directories( ias-audio-smartx PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/private/inc>)
+
+target_include_directories( ias-audio-smartx PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public/inc>
+  $<INSTALL_INTERFACE:public/inc> )
+
+find_library(DLT_LIBRARY dlt)
+
+target_link_libraries( ias-audio-smartx ${DLT_LIBRARY} )
+target_link_libraries( ias-audio-smartx tbb )
+target_link_libraries( ias-audio-smartx boost_system )
+target_link_libraries( ias-audio-smartx boost_filesystem )
+target_link_libraries( ias-audio-smartx boost_program_options )
+target_link_libraries( ias-audio-smartx asound )
+target_link_libraries( ias-audio-smartx sndfile )
+target_link_libraries( ias-audio-smartx ias-audio-common )
+
+install( TARGETS ias-audio-smartx EXPORT ias-audio-smartx
+         LIBRARY
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            COMPONENT Libraries
+)
+install( DIRECTORY public/inc/ DESTINATION include
+         PATTERN "configparser" EXCLUDE
+         PATTERN "equalizerx" EXCLUDE
+         PATTERN "mixerx" EXCLUDE
+         PATTERN "testfwx" EXCLUDE
+         PATTERN "volumex" EXCLUDE )
+install( EXPORT ias-audio-smartx DESTINATION ${CMAKE_INSTALL_LIBDIR}/ias-audio-smartx )
+install( FILES public/res/smartx_config.txt DESTINATION /etc )
+
+#--------------------------------------------
+# ias-audio-helperx
+#--------------------------------------------
+add_library( ias-audio-helperx STATIC
+  private/src/helper/IasRamp.cpp
+)
+
+set_target_properties( ias-audio-helperx PROPERTIES VERSION ${AUDIO_SMARTX_VERSION_STRING} SOVERSION ${AUDIO_SMARTX_VERSION_MAJOR} )
+
+target_compile_options( ias-audio-helperx PUBLIC -ffast-math )
+target_compile_options( ias-audio-helperx PUBLIC --std=c++11 )
+target_compile_options( ias-audio-helperx PUBLIC -msse )
+target_compile_options( ias-audio-helperx PUBLIC -msse2 )
+target_compile_options( ias-audio-helperx PUBLIC -O3 )
+target_compile_options( ias-audio-helperx PUBLIC -fPIC )
+
+target_include_directories( ias-audio-helperx PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/private/inc )
+target_include_directories( ias-audio-helperx PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/public/inc )
+
+target_link_libraries( ias-audio-helperx ias-audio-smartx )
+
+install( TARGETS ias-audio-helperx EXPORT ias-audio-helperx
+         ARCHIVE
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            COMPONENT Development
+)
+install( EXPORT ias-audio-helperx DESTINATION ${CMAKE_INSTALL_LIBDIR}/ias-audio-smartx )
+
+#---------------------------------------------
+# ias-audio-filterx
+#---------------------------------------------
+add_library( ias-audio-filterx STATIC
+  private/src/filter/IasAudioFilter.cpp
+  private/src/filter/IasAudioFilterCallback.cpp
+)
+
+set_target_properties( ias-audio-filterx PROPERTIES VERSION ${AUDIO_SMARTX_VERSION_STRING} SOVERSION ${AUDIO_SMARTX_VERSION_MAJOR} )
+
+target_compile_options( ias-audio-filterx PUBLIC -ffast-math )
+target_compile_options( ias-audio-filterx PUBLIC --std=c++11 )
+target_compile_options( ias-audio-filterx PUBLIC -msse )
+target_compile_options( ias-audio-filterx PUBLIC -msse2 )
+target_compile_options( ias-audio-filterx PUBLIC -O3 )
+target_compile_options( ias-audio-filterx PUBLIC -fPIC )
+
+target_include_directories( ias-audio-filterx PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/private/inc )
+
+target_link_libraries( ias-audio-filterx ias-audio-common )
+target_link_libraries( ias-audio-filterx ias-audio-smartx )
+
+install( TARGETS ias-audio-filterx EXPORT ias-audio-filterx
+         ARCHIVE
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            COMPONENT Development
+)
+install( EXPORT ias-audio-filterx DESTINATION ${CMAKE_INSTALL_LIBDIR}/ias-audio-smartx )
+
+#---------------------------------------------
+# ias-audio-volumex
+#---------------------------------------------
+add_library( ias-audio-volumex STATIC
+  private/src/volume/IasVolumeLoudnessCore.cpp
+  private/src/volume/IasVolumeCmdInterface.cpp
+  private/src/volume/IasVolumeHelper.cpp
+)
+
+set_target_properties( ias-audio-volumex PROPERTIES VERSION ${AUDIO_SMARTX_VERSION_STRING} SOVERSION ${AUDIO_SMARTX_VERSION_MAJOR} )
+
+target_compile_options( ias-audio-volumex PUBLIC -ffast-math )
+target_compile_options( ias-audio-volumex PUBLIC --std=c++11 )
+target_compile_options( ias-audio-volumex PUBLIC -msse )
+target_compile_options( ias-audio-volumex PUBLIC -msse2 )
+target_compile_options( ias-audio-volumex PUBLIC -O3 )
+target_compile_options( ias-audio-volumex PUBLIC -fPIC )
+
+target_include_directories( ias-audio-volumex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/private/inc )
+target_include_directories( ias-audio-volumex PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public/inc>
+  $<INSTALL_INTERFACE:public/inc> )
+
+target_link_libraries( ias-audio-volumex ias-audio-smartx )
+target_link_libraries( ias-audio-volumex ias-audio-helperx )
+target_link_libraries( ias-audio-volumex ias-audio-filterx )
+target_link_libraries( ias-audio-volumex tbb )
+
+install( TARGETS ias-audio-volumex EXPORT ias-audio-volumex
+         ARCHIVE
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            COMPONENT Development
+)
+install( DIRECTORY public/inc/ DESTINATION include
+         PATTERN "configparser" EXCLUDE
+         PATTERN "equalizerx" EXCLUDE
+         PATTERN "mixerx" EXCLUDE
+         PATTERN "smartx" EXCLUDE
+         PATTERN "testfwx" EXCLUDE )
+install( EXPORT ias-audio-volumex DESTINATION ${CMAKE_INSTALL_LIBDIR}/ias-audio-smartx )
+
+#---------------------------------------------
+# ias-audio-mixerx
+#---------------------------------------------
+add_library( ias-audio-mixerx STATIC
+  private/src/mixer/IasMixerCmdInterface.cpp
+  private/src/mixer/IasMixerCore.cpp
+  private/src/mixer/IasMixerElementary.cpp
+)
+
+set_target_properties( ias-audio-mixerx PROPERTIES VERSION ${AUDIO_SMARTX_VERSION_STRING} SOVERSION ${AUDIO_SMARTX_VERSION_MAJOR} )
+
+target_compile_options( ias-audio-mixerx PUBLIC -ffast-math )
+target_compile_options( ias-audio-mixerx PUBLIC --std=c++11 )
+target_compile_options( ias-audio-mixerx PUBLIC -msse )
+target_compile_options( ias-audio-mixerx PUBLIC -msse2 )
+target_compile_options( ias-audio-mixerx PUBLIC -O3 )
+target_compile_options( ias-audio-mixerx PUBLIC -fPIC )
+
+target_include_directories( ias-audio-mixerx PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/private/inc )
+target_include_directories( ias-audio-mixerx PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public/inc>
+  $<INSTALL_INTERFACE:public/inc> )
+
+target_link_libraries( ias-audio-mixerx ias-audio-smartx )
+target_link_libraries( ias-audio-mixerx ias-audio-helperx )
+target_link_libraries( ias-audio-mixerx ias-audio-filterx )
+target_link_libraries( ias-audio-mixerx tbb )
+
+install( TARGETS ias-audio-mixerx EXPORT ias-audio-mixerx
+         ARCHIVE
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            COMPONENT Development
+)
+install( DIRECTORY public/inc/ DESTINATION include
+         PATTERN "configparser" EXCLUDE
+         PATTERN "equalizerx" EXCLUDE
+         PATTERN "smartx" EXCLUDE
+         PATTERN "testfwx" EXCLUDE
+         PATTERN "volumex" EXCLUDE )
+install( EXPORT ias-audio-mixerx DESTINATION ${CMAKE_INSTALL_LIBDIR}/ias-audio-smartx )
+
+#---------------------------------------------
+# ias-audio-equalizerx
+#---------------------------------------------
+add_library( ias-audio-equalizerx STATIC
+  private/src/equalizer/IasEqualizerCmdInterface.cpp
+  private/src/equalizer/IasEqualizerCore.cpp
+  private/src/equalizer/IasEqualizerConfiguration.cpp
+)
+
+set_target_properties( ias-audio-equalizerx PROPERTIES VERSION ${AUDIO_SMARTX_VERSION_STRING} SOVERSION ${AUDIO_SMARTX_VERSION_MAJOR} )
+
+target_compile_options( ias-audio-equalizerx PUBLIC -ffast-math )
+target_compile_options( ias-audio-equalizerx PUBLIC --std=c++11 )
+target_compile_options( ias-audio-equalizerx PUBLIC -msse )
+target_compile_options( ias-audio-equalizerx PUBLIC -msse2 )
+target_compile_options( ias-audio-equalizerx PUBLIC -O3 )
+target_compile_options( ias-audio-equalizerx PUBLIC -fPIC )
+
+target_include_directories( ias-audio-equalizerx PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/private/inc )
+target_include_directories( ias-audio-equalizerx PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public/inc>
+  $<INSTALL_INTERFACE:public/inc> )
+
+target_link_libraries( ias-audio-equalizerx ias-audio-smartx )
+target_link_libraries( ias-audio-equalizerx ias-audio-helperx )
+target_link_libraries( ias-audio-equalizerx ias-audio-filterx )
+target_link_libraries( ias-audio-equalizerx tbb )
+
+install( TARGETS ias-audio-equalizerx EXPORT ias-audio-equalizerx
+         ARCHIVE
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            COMPONENT Development
+)
+install( DIRECTORY public/inc/ DESTINATION include
+         PATTERN "configparser" EXCLUDE
+         PATTERN "mixerx" EXCLUDE
+         PATTERN "smartx" EXCLUDE
+         PATTERN "testfwx" EXCLUDE
+         PATTERN "volumex" EXCLUDE )
+install( EXPORT ias-audio-equalizerx DESTINATION ${CMAKE_INSTALL_LIBDIR}/ias-audio-smartx )
+
+#-----------------------------------------
+# ias-audio-modules
+#-----------------------------------------
+add_library( ias-audio-modules MODULE
+  private/src/module_library/IasModuleLibrary.cpp
+)
+
+target_compile_options( ias-audio-modules PUBLIC -ffast-math )
+target_compile_options( ias-audio-modules PUBLIC --std=c++11 )
+target_compile_options( ias-audio-modules PUBLIC -msse )
+target_compile_options( ias-audio-modules PUBLIC -msse2 )
+target_compile_options( ias-audio-modules PUBLIC -O3 )
+target_compile_options( ias-audio-modules PUBLIC -fPIC )
+target_compile_options( ias-audio-modules PUBLIC -DPIC )
+
+target_include_directories( ias-audio-modules PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/private/inc )
+
+target_link_libraries( ias-audio-modules ias-audio-smartx )
+target_link_libraries( ias-audio-modules ias-audio-volumex )
+target_link_libraries( ias-audio-modules ias-audio-mixerx )
+target_link_libraries( ias-audio-modules ias-audio-equalizerx )
+target_link_libraries( ias-audio-modules tbb )
+
+set_target_properties( ias-audio-modules PROPERTIES PREFIX "plugin")
+install( TARGETS ias-audio-modules EXPORT ias-audio-modules
+         LIBRARY
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}/smartx-plugin
+            COMPONENT Libraries
+)
+install( EXPORT ias-audio-modules DESTINATION ${CMAKE_INSTALL_LIBDIR}/ias-audio-smartx )
+
+#-----------------------------------------
+# ias-audio-testfwx
+#-----------------------------------------
+add_library( ias-audio-testfwx SHARED
+  private/src/testfwx/IasTestFramework.cpp
+  private/src/testfwx/IasTestFrameworkConfiguration.cpp
+  private/src/testfwx/IasTestFrameworkPriv.cpp
+  private/src/testfwx/IasTestFrameworkRoutingZone.cpp
+  private/src/testfwx/IasTestFrameworkSetupImpl.cpp
+  private/src/testfwx/IasTestFrameworkWaveFile.cpp
+)
+
+set_target_properties( ias-audio-testfwx PROPERTIES VERSION ${AUDIO_SMARTX_VERSION_STRING} SOVERSION ${AUDIO_SMARTX_VERSION_MAJOR} )
+
+target_compile_options( ias-audio-testfwx PUBLIC -ffast-math )
+target_compile_options( ias-audio-testfwx PUBLIC --std=c++11 )
+target_compile_options( ias-audio-testfwx PUBLIC -msse )
+target_compile_options( ias-audio-testfwx PUBLIC -msse2 )
+target_compile_options( ias-audio-testfwx PUBLIC -O3 )
+
+target_include_directories( ias-audio-testfwx PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/private/inc )
+target_include_directories( ias-audio-testfwx PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public/inc>
+  $<INSTALL_INTERFACE:public/inc> )
+
+target_link_libraries( ias-audio-testfwx boost_system )
+target_link_libraries( ias-audio-testfwx boost_filesystem )
+target_link_libraries( ias-audio-testfwx boost_program_options )
+target_link_libraries( ias-audio-testfwx asound )
+target_link_libraries( ias-audio-testfwx ias-audio-smartx )
+
+install( TARGETS ias-audio-testfwx EXPORT ias-audio-testfwx
+         LIBRARY
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            COMPONENT Libraries
+)
+install( DIRECTORY public/inc/ DESTINATION include
+         PATTERN "configparser" EXCLUDE
+         PATTERN "equalizerx" EXCLUDE
+         PATTERN "mixerx" EXCLUDE
+         PATTERN "smartx" EXCLUDE
+         PATTERN "volumex" EXCLUDE )
+install( EXPORT ias-audio-testfwx DESTINATION ${CMAKE_INSTALL_LIBDIR}/ias-audio-smartx )
+
+#-----------------------------------------
+# ias-audio-configparser
+#-----------------------------------------
+add_library( ias-audio-configparser SHARED
+  private/src/configparser/IasConfigParser.cpp
+  private/src/configparser/IasParseHelper.cpp
+  private/src/configparser/IasSmartXTypeConversion.cpp
+  private/src/configparser/IasSmartXconfigParser.cpp
+  private/src/configparser/IasConfigSinkDevice.cpp
+  private/src/configparser/IasConfigSourceDevice.cpp
+  private/src/configparser/IasConfigPipeline.cpp
+  private/src/configparser/IasConfigProcessingModule.cpp
+  private/src/configparser/IasSmartXDebugFacade.cpp
+)
+
+set_target_properties( ias-audio-configparser PROPERTIES VERSION ${AUDIO_SMARTX_VERSION_STRING} SOVERSION ${AUDIO_SMARTX_VERSION_MAJOR} )
+
+target_compile_options( ias-audio-configparser PUBLIC -ffast-math )
+target_compile_options( ias-audio-configparser PUBLIC --std=c++11 )
+target_compile_options( ias-audio-configparser PUBLIC -msse )
+target_compile_options( ias-audio-configparser PUBLIC -msse2 )
+target_compile_options( ias-audio-configparser PUBLIC -O3 )
+
+find_package(LibXml2 REQUIRED)
+
+target_include_directories( ias-audio-configparser PRIVATE ${LIBXML2_INCLUDE_DIR} )
+target_include_directories( ias-audio-configparser PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/private/inc )
+target_include_directories( ias-audio-configparser PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public/inc>
+  $<INSTALL_INTERFACE:public/inc> )
+
+target_link_libraries( ias-audio-configparser ias-audio-smartx )
+target_link_libraries( ias-audio-configparser xml2 )
+
+install( TARGETS ias-audio-configparser EXPORT ias-audio-configparser
+         LIBRARY
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            COMPONENT Libraries
+)
+install( DIRECTORY public/inc/ DESTINATION include
+         PATTERN "equalizerx" EXCLUDE
+         PATTERN "mixerx" EXCLUDE
+         PATTERN "smartx" EXCLUDE
+         PATTERN "testfwx" EXCLUDE
+         PATTERN "volumex" EXCLUDE )
+install( EXPORT ias-audio-configparser DESTINATION ${CMAKE_INSTALL_LIBDIR}/ias-audio-smartx )

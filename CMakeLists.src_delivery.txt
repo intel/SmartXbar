@@ -1,0 +1,289 @@
+#
+# Copyright (C) 2018 Intel Corporation.All rights reserved.
+#
+" SPDX-License-Identifier: BSD-3-Clause
+#
+# Specify a name for the source entity, suggestion is to use <subsystem> <component>_source
+IasInitEntity( audio smartx_source "" )
+# Define the path where the sources will be installed, you have to use <subsystem>/<component>/src
+IasSetEntityInstallPrefix( "audio/daemon2/src" )
+
+# This the copyright text for files which use '#' for commenting lines, e.g. CMakeLists
+string(REPLACE "\n" "\n# " numberSignCopyrightTag "${IAS_COPYRIGHT_TAG}")
+# This the copyright text for files which use '/* */' for commenting lines, e.g. C/C++ source and header files
+string(REPLACE "\n" "\n * " codeCopyrightTag "${IAS_COPYRIGHT_TAG}")
+set(codeCopyrightTag " *\n * ${codeCopyrightTag}" )
+
+# This lists all files that use '#' for comments
+# Leave out all CMakeLists that will be exchanged by adapted version. For that, use the list below
+IasAddFiles(CMAKELISTS_INSTALL_FILES ${CMAKE_CURRENT_SOURCE_DIR}
+  CMakeLists.smartx.txt
+)
+
+# This lists all files that use '#' for comments and will be replaced by adapted files
+# This applies to all CMakeLists that make use of a generator (stub and skeleton side)
+IasAddFiles(CMAKELISTS_REPLACEMENT_FILES ${CMAKE_CURRENT_SOURCE_DIR}/private/res
+  CMakeLists.txt
+)
+
+# This list holds all header and source files (public and private)
+IasAddFiles(CODE_INSTALL_FILES ${CMAKE_CURRENT_SOURCE_DIR}
+
+  PREFIX ./public/inc/audio/smartx
+    IasEventHandler.hpp
+    IasConnectionEvent.hpp
+    IasIProcessingModuleConfig.hpp
+    IasEvent.hpp
+    IasEventProvider.hpp
+    IasSetupHelper.hpp
+    IasIRouting.hpp
+    IasSmartX.hpp
+    IasISetup.hpp
+    IasIProcessing.hpp
+    IasIDebug.hpp
+    IasSetupEvent.hpp
+    IasProperties.hpp
+  PREFIX ./public/inc/audio/smartx/rtprocessingfwx
+    IasModuleEvent.hpp
+    IasICmdRegistration.hpp
+    IasGenericAudioCompCore.hpp
+    IasPluginLibrary.hpp
+    IasIGenericAudioCompConfig.hpp
+    IasAudioPlugin.hpp
+    IasIModuleId.hpp
+    IasGenericAudioComp.hpp
+    IasProcessingTypes.hpp
+    IasBundledAudioStream.hpp
+    IasBaseAudioStream.hpp
+    IasAudioStream.hpp
+    IasSimpleAudioStream.hpp
+  PREFIX ./public/inc/audio/mixerx
+    IasMixerCmd.hpp
+  PREFIX ./public/inc/audio/testfwx
+    IasTestFrameworkSetup.hpp
+    IasTestFramework.hpp
+    IasTestFrameworkPublicTypes.hpp
+  PREFIX ./public/inc/audio/configparser
+    IasSmartXconfigParser.hpp
+    IasSmartXDebugFacade.hpp
+  PREFIX ./public/inc/audio/volumex
+    IasVolumeCmd.hpp
+  PREFIX ./public/inc/audio/equalizerx
+    IasEqualizerCmd.hpp
+  PREFIX ./public/res
+    smartx_config.txt
+  PREFIX ./private/inc/volume
+    IasVolumeLoudnessCore.hpp
+    IasVolumeHelper.hpp
+    IasVolumeCmdInterface.hpp
+  PREFIX ./private/inc/equalizer
+    IasEqualizerCmdInterface.hpp
+    IasEqualizerConfiguration.hpp
+    IasEqualizerCore.hpp
+  PREFIX ./private/inc/helper
+    IasRamp.hpp
+  PREFIX ./private/inc/smartx
+    IasConfigFile.hpp
+    IasAudioTypedefs.hpp
+    IasDebugMutexDecorator.hpp
+    IasDecoratorGuard.hpp
+    IasProcessingMutexDecorator.hpp
+    IasRoutingMutexDecorator.hpp
+    IasSetupMutexDecorator.hpp
+    IasSmartXClient.hpp
+    IasDebugImpl.hpp
+    IasRoutingImpl.hpp
+    IasProcessingImpl.hpp
+    IasThreadNames.hpp
+    IasConfiguration.hpp
+    IasSmartXPriv.hpp
+    IasSetupImpl.hpp
+  PREFIX ./private/inc/mixer
+    IasMixerCore.hpp
+    IasMixerElementary.hpp
+    IasMixerCmdInterface.hpp
+  PREFIX ./private/inc/model
+    IasPipeline.hpp
+    IasRoutingZoneWorkerThread.hpp
+    IasAudioPin.hpp
+    IasRoutingZone.hpp
+    IasAudioPortOwner.hpp
+    IasProcessingModule.hpp
+    IasAudioPort.hpp
+    IasAudioDevice.hpp
+    IasAudioSinkDevice.hpp
+    IasAudioSourceDevice.hpp
+  PREFIX ./private/inc/alsahandler
+    IasAlsaHandlerWorkerThread.hpp
+    IasAlsaHandler.hpp
+  PREFIX ./private/inc/diagnostic
+    IasDiagnostic.hpp
+    IasDiagnosticStream.hpp
+    IasDiagnosticLogWriter.hpp
+  PREFIX ./private/inc/filter
+    IasAudioFilter.hpp
+    IasAudioFilterCallback.hpp
+  PREFIX ./private/inc/testfwx
+    IasTestFrameworkSetupImpl.hpp
+    IasTestFrameworkPriv.hpp
+    IasTestFrameworkWaveFile.hpp
+    IasTestFrameworkTypes.hpp
+    IasTestFrameworkConfiguration.hpp
+    IasTestFrameworkRoutingZone.hpp
+  PREFIX ./private/inc/configparser
+    IasConfigParser.hpp
+    IasParseHelper.hpp
+    IasSmartXTypeConversion.hpp
+    IasConfigSinkDevice.hpp
+    IasConfigSourceDevice.hpp
+    IasConfigPipeline.hpp
+    IasConfigProcessingModule.hpp
+  PREFIX ./private/inc/switchmatrix
+    IasSwitchMatrixJob.hpp
+    IasSwitchMatrix.hpp
+    IasBufferTask.hpp
+  PREFIX ./private/inc/rtprocessingfwx
+    IasGenericAudioCompConfig.hpp
+    IasAudioBufferPoolHandler.hpp
+    IasAudioChainEnvironment.hpp
+    IasCmdDispatcher.hpp
+    IasStreamParams.hpp
+    IasPluginEngine.hpp
+    IasBundleSequencer.hpp
+    IasAudioChain.hpp
+    IasAudioChannelBundle.hpp
+    IasAudioBuffer.hpp
+    IasBundleAssignment.hpp
+    IasAudioBufferPool.hpp
+  PREFIX ./private/src/volume
+    IasVolumeCmdInterface.cpp
+    IasVolumeLoudnessCore.cpp
+    IasVolumeHelper.cpp
+  PREFIX ./private/src/equalizer
+    IasEqualizerCmdInterface.cpp
+    IasEqualizerConfiguration.cpp
+    IasEqualizerCore.cpp
+  PREFIX ./private/src/helper
+    IasRamp.cpp
+  PREFIX ./private/src/smartx
+    IasEvent.cpp
+    IasSetupEvent.cpp
+    IasSmartXClient.cpp
+    IasSmartX.cpp
+    IasRoutingImpl.cpp
+    IasSmartXPriv.cpp
+    IasProperties.cpp
+    IasThreadNames.cpp
+    IasEventProvider.cpp
+    IasProcessingImpl.cpp
+    IasDebugMutexDecorator.cpp
+    IasProcessingMutexDecorator.cpp
+    IasRoutingMutexDecorator.cpp
+    IasSetupMutexDecorator.cpp
+    IasToString.cpp
+    IasConnectionEvent.cpp
+    IasSetupHelper.cpp
+    IasSetupImpl.cpp
+    IasConfigFile.cpp
+    IasEventHandler.cpp
+    IasDebugImpl.cpp
+    IasConfiguration.cpp
+    IasDecoratorGuard.cpp
+  PREFIX ./private/src/equalizer
+    IasEqualizerCmdInterface.cpp
+    IasEqualizerConfiguration.cpp
+    IasEqualizerCore.cpp
+  PREFIX ./private/src/mixer
+    IasMixerElementary.cpp
+    IasMixerCmdInterface.cpp
+    IasMixerCore.cpp
+  PREFIX ./private/src/model
+    IasAudioPort.cpp
+    IasAudioSourceDevice.cpp
+    IasPipeline.cpp
+    IasAudioSinkDevice.cpp
+    IasAudioDevice.cpp
+    IasRoutingZoneWorkerThread.cpp
+    IasAudioPin.cpp
+    IasProcessingModule.cpp
+    IasRoutingZone.cpp
+  PREFIX ./private/src/alsahandler
+    IasAlsaHandler.cpp
+    IasAlsaHandlerWorkerThread.cpp
+  PREFIX ./private/src/diagnostic
+    IasDiagnostic.cpp
+    IasDiagnosticStream.cpp
+    IasDiagnosticLogWriter.cpp
+  PREFIX ./private/src/filter
+    IasAudioFilterCallback.cpp
+    IasAudioFilter.cpp
+  PREFIX ./private/src/testfwx
+    IasTestFrameworkPriv.cpp
+    IasTestFramework.cpp
+    IasTestFrameworkConfiguration.cpp
+    IasTestFrameworkRoutingZone.cpp
+    IasTestFrameworkSetupImpl.cpp
+    IasTestFrameworkWaveFile.cpp
+  PREFIX ./private/src/configparser
+    IasConfigParser.cpp
+    IasParseHelper.cpp
+    IasSmartXTypeConversion.cpp
+    IasSmartXconfigParser.cpp
+    IasConfigSinkDevice.cpp
+    IasConfigSourceDevice.cpp
+    IasConfigPipeline.cpp
+    IasConfigProcessingModule.cpp
+    IasSmartXDebugFacade.cpp
+  PREFIX ./private/src/module_library
+    IasModuleLibrary.cpp
+  PREFIX ./private/src/switchmatrix
+    IasBufferTask.cpp
+    IasSwitchMatrixJob.cpp
+    IasSwitchMatrix.cpp
+  PREFIX ./private/src/rtprocessingfwx
+    IasPluginLibrary.cpp
+    IasGenericAudioComp.cpp
+    IasSimpleAudioStream.cpp
+    IasAudioBuffer.cpp
+    IasBundleSequencer.cpp
+    IasProcessingTypes.cpp
+    IasAudioChannelBundle.cpp
+    IasStreamParams.cpp
+    IasGenericAudioCompConfig.cpp
+    IasBaseAudioStream.cpp
+    IasAudioChainEnvironment.cpp
+    IasGenericAudioCompCore.cpp
+    IasBundleAssignment.cpp
+    IasCmdDispatcher.cpp
+    IasAudioBufferPoolHandler.cpp
+    IasAudioStream.cpp
+    IasAudioBufferPool.cpp
+    IasPluginEngine.cpp
+    IasAudioChain.cpp
+    IasAudioSubdevice.cpp
+    IasBundledAudioStream.cpp
+)
+
+# This holds all other files that do not need any replacement of the copyright header
+IasAddFiles(PLAIN_INSTALL_FILES ${CMAKE_CURRENT_SOURCE_DIR}
+     
+  PREFIX public/res
+    smartx_config.txt
+)
+
+#
+# From here on comes the real installation of the files
+#
+# This is for the source files
+IasInstallFilesImpl( "${CMAKE_CURRENT_SOURCE_DIR}" "" "" base ${CODE_INSTALL_FILES} COPYRIGHT_TAG ${codeCopyrightTag})
+ 
+# This is for the CMakeLists (COPYRIGHT_TAG must be handled differently than _normal_ source files)
+IasInstallFilesImpl( "${CMAKE_CURRENT_SOURCE_DIR}" "" "" base ${CMAKELISTS_INSTALL_FILES} COPYRIGHT_TAG ${numberSignCopyrightTag})
+ 
+# This is to _overwrite_ cmake files and replace the COPYRIGHT_TAG
+IasInstallFilesImpl( "${CMAKE_CURRENT_SOURCE_DIR}/private/res" "" "" base ${CMAKELISTS_REPLACEMENT_FILES} COPYRIGHT_TAG ${numberSignCopyrightTag})
+ 
+# This is for everything else
+IasInstallFilesImpl( "${CMAKE_CURRENT_SOURCE_DIR}" "" "" base ${PLAIN_INSTALL_FILES})
+
+IasBuildEntity()

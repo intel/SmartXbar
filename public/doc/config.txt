@@ -1,0 +1,16 @@
+# use ($THIS) to use current directory
+# multiple input paths allowed
+# relative to cmake root dir
+PATH_IN = audio/daemon2/private
+PATH_IN = audio/common/private
+PATH_IN = KC--3.0_H-audio--daemon2/git/private
+PATH_IN = KC--3.0_H-audio--common/git/private
+
+# trigger IO print outs
+DEBUG = 0
+
+# output files: (relative path to python script)
+FILE_ERROR = dlt_error.html
+FILE_WARNING = dlt_warning.html
+FILE_INFO = dlt_info.html
+FILE_VERBOSE = dlt_verbose.html

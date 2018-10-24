@@ -1,0 +1,92 @@
+# Copyright (C) 2018 Intel Corporation.All rights reserved.
+
+# SPDX-License-Identifier: BSD-3-Clause
+
+#---------------------------------------------------------------------------------------------------
+# Android Version Constants definition:
+# Redefine here android version in order to be able to use equality, greater than, etc.. rules.
+# Use
+#   ANDROID_VERSION_<Major or Dessert Letter> to provide the adaption
+#
+# You can use the conditional expressions rules as:
+# ifeq ("$(shell [ $(ANDROID_VERSION) -gt $(ANDROID_N) ] && echo true)", "true")
+#---------------------------------------------------------------------------------------------------
+ANDROID_M := 6
+ANDROID_N := 7
+ANDROID_O := 8
+
+ANDROID_VERSION_6 := $(ANDROID_M)
+ANDROID_VERSION_7 := $(ANDROID_N)
+ANDROID_VERSION_8 := $(ANDROID_O)
+ANDROID_VERSION_O := $(ANDROID_O)
+
+ANDROID_SUPPORTED_VERSIONS := 6 7 O 8
+
+#------------------------------------------------------------------
+# Determining Android version of current build
+# first letter may be major version or may be the dessert letter...
+#------------------------------------------------------------------
+PLATFORM_VERSION_FIRST_LETTER := $(word 1, $(subst ., ,$(PLATFORM_VERSION)))
+
+$(info "PLATFORM_VERSION $(PLATFORM_VERSION)")
+$(info "PLATFORM_VERSION_FIRST_LETTER $(PLATFORM_VERSION_FIRST_LETTER)")
+
+$(foreach item, $(ANDROID_SUPPORTED_VERSIONS),\
+    $(if $(call streq,$(PLATFORM_VERSION_FIRST_LETTER),$(item)),\
+        $(eval ANDROID_VERSION := $(ANDROID_VERSION_$(item))),))
+
+$(if $(ANDROID_VERSION),$(info "ANDROID_VERSION $(ANDROID_VERSION)"),\
+    $(error Unsupported Android version))
+
+#######################################################################
+
+LOCAL_PATH := $(call my-dir)
+
+include $(LOCAL_PATH)/SmartX.mk
+
+include $(LOCAL_PATH)/AudioModules.mk
+
+#########################################
+# TEST
+#########################################
+ifeq (1,1)
+include $(LOCAL_PATH)/AlsaHandlerTest.mk
+
+include $(LOCAL_PATH)/BufferTaskTest.mk
+
+include $(LOCAL_PATH)/FilterCoverageTest.mk
+
+include $(LOCAL_PATH)/FilterTest.mk
+
+include $(LOCAL_PATH)/ModelTest.mk
+
+include $(LOCAL_PATH)/PipelineTest.mk
+
+include $(LOCAL_PATH)/PluginTest.mk
+
+include $(LOCAL_PATH)/PluginUseCasesTest.mk
+
+include $(LOCAL_PATH)/RampTest.mk
+
+#include $(LOCAL_PATH)/RoutingZoneTest.mk
+
+include $(LOCAL_PATH)/RtProcessingFwIntegrationTest.mk
+
+#include $(LOCAL_PATH)/SmartXApiTest.mk
+
+include $(LOCAL_PATH)/SmartDummyConnectionsTest.mk
+
+#include $(LOCAL_PATH)/SwitchMatrixTest.mk
+
+include $(LOCAL_PATH)/SwitchMatrixJobTest.mk
+
+include $(LOCAL_PATH)/IasAudioStreamTest.mk
+
+include $(LOCAL_PATH)/VolumeLoudnessCoreTest.mk
+
+include $(LOCAL_PATH)/VolumeLoudnessSDVTest.mk
+
+include $(LOCAL_PATH)/VolumeTest.mk
+
+include $(LOCAL_PATH)/Year2038Test.mk
+endif

@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<vads>
+
+  <version>
+    <oemId>INTEL</oemId>
+    <oemRevision>1</oemRevision>
+  </version>
+
+  <!-- playback devs-->
+  <devices>
+    <dev>
+      <id>0</id>
+      <type>playback</type>
+      <name>vsink0</name>
+      <format>32</format>
+      <frequency>48000</frequency>
+      <channelNo>2</channelNo>
+      <clock>slave</clock>
+      <periodNo>4</periodNo>
+      <periodSize>192</periodSize>
+      <mode>blocking</mode>
+      <file>/tmp/vsink0.wav</file>      
+      <timing>
+
+
+	<tick prefix="us">4000</tick> <!-- tick in us only TODO: option to have ms -->
+	<sequence> <!-- follow the below sequence, iterations: 0, 1, ... infinite -->
+	  
+	  <ticksNumber drift="1">1000</ticksNumber> <!-- step 1: generate 1000 ticks (4 sec) without drift -->
+	  <ticksNumber drift="10">2</ticksNumber> <!-- step 2: generate 50us drift per tick for next 2000 ticks -->
+	  <ticksNumber drift="-10">5</ticksNumber> <!-- step 3:-50us drift per tick for next 500 ticks -->
+	  <ticksEmpty>100</ticksEmpty>
+	  <ticksNumber drift="0">500</ticksNumber>
+	  <ticksEmpty>50</ticksEmpty> <!-- step 4: no data sent for 100 ticks -->
+	  <ticksNumber drift="0">500</ticksNumber> <!-- last step -->
+	</sequence>
+	
+      </timing>      
+    </dev>
+
+    <dev>
+      <id>1</id>
+      <type>playback</type>
+      <name>vsink1</name>
+      <format>32</format>
+      <frequency>48000</frequency>
+      <channelNo>1</channelNo>
+      <clock>master</clock>
+      <periodNo>4</periodNo>
+      <periodSize>192</periodSize>
+      <mode>blocking</mode>
+      <file>/tmp/vsink1.wav</file>
+      <timing>
+
+	<tick prefix="us">4000</tick>
+	<sequence>
+	  <ticksNumber drift="2">500</ticksNumber>
+	  <ticksNumber drift="20">1000</ticksNumber>
+	  <ticksEmpty>100</ticksEmpty>
+	</sequence>
+
+      </timing>
+    </dev>
+
+    <!-- record devs-->
+    <dev>
+      <id>2</id>
+      <type>capture</type>
+      <name>vsrc1</name>
+      <format>16</format>
+      <frequency>48000</frequency>
+      <channelNo>4</channelNo>
+      <clock>master</clock>
+      <periodNo>4</periodNo>
+      <periodSize>192</periodSize>
+      <mode>blocking</mode>
+      <file>/opt/audio/gpmrb/alsa_simulator/wav/r48_c4_f16.wav</file>
+      <timing>
+	
+	<tick prefix="us">4000</tick>
+	<sequence>
+	  <!-- <ticksNumber drift="3">9</ticksNumber> -->
+	  <ticksEmpty>100</ticksEmpty>
+	  <ticksNumber drift="0">800</ticksNumber>
+	  <ticksEmpty>500</ticksEmpty>
+	  <ticksNumber drift="0">2000</ticksNumber>
+	</sequence>
+	
+      </timing>
+    </dev>
+  </devices>
+</vads>

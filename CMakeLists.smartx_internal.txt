@@ -1,0 +1,70 @@
+#
+# Copyright (C) 2018 Intel Corporation.All rights reserved.
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#
+include( CMakeLists.src_delivery.txt )
+
+if( NOT IAS_DISABLE_TESTS )
+
+  #------------------------------------------
+  # Debug ipc library to inject into customer lib
+  #------------------------------------------
+  add_subdirectory( private/tst/debug_ipc )
+
+
+
+  #------------------------------------------
+  # Unit tests
+  #------------------------------------------
+  IasAddTest( audio smartx pipeline )
+  IasAddTest( audio smartx switchmatrix )
+  IasAddTest( audio smartx routingzone )
+  IasAddTest( audio smartx smartx_api )
+  IasAddTest( audio smartx smartx_api_mutex )
+  IasAddTest( audio smartx alsahandler )
+  IasAddTest( audio smartx smartx_dummyConnections )
+  IasAddTest( audio smartx switchmatrixjob )
+  IasAddTest( audio smartx model_tst )
+  IasAddTest( audio smartx buffertask )
+  IasAddTest( audio smartx testIasAudioStream )
+  IasAddTest( audio smartx rtprocessingfwIntegration )
+  IasAddTest( audio smartx plugins )
+  IasAddTest( audio smartx testVolumeLoudnessCore )
+  IasAddTest( audio smartx testVolumeLoudnessSDV )
+  IasAddTest( audio smartx volumeTest )
+  IasAddTest( audio smartx mixerBalanceTest )
+  IasAddTest( audio smartx mixerGainOffsetTest )
+  IasAddTest( audio smartx mixerFaderTest )
+  IasAddTest( audio smartx mixerMultiChannelTest )
+  IasAddTest( audio smartx mixerMultiZoneTest )
+  IasAddTest( audio smartx mixerTest )
+  IasAddTest( audio smartx mixerEventsTest )
+  IasAddTest( audio smartx equalizerCore )
+  IasAddTest( audio smartx equalizerCarTest )
+  IasAddTest( audio smartx equalizerCarGTest )
+  IasAddTest( audio smartx equalizerUserTest )
+  IasAddTest( audio smartx equalizerUserGTest )
+  IasAddTest( audio smartx equalizerUserEventsTest )
+  IasAddTest( audio smartx filterTest )
+  IasAddTest( audio smartx filterCoverageTest )
+  IasAddTest( audio smartx rampTest )
+  IasAddTest( audio smartx plugin_use_cases_tst )
+  IasAddTest( audio smartx testfwxTest )
+  # This test fails when running with code coverage enabled.
+  # Testing that multiple opens fail are done in plugin_use_cases_tst
+  #IasAddTest( audio smartx aplays_tst )
+  IasAddTest( audio smartx configparserTest )
+  IasAddTest( audio smartx debugFascadeTest )
+  # The following test was only to check the root cause of the year 2038 problem of boost
+  #IasAddTest( audio smartx year_2038 )
+  IasAddTest( audio smartx alsa_plugin_open_once )
+  IasAddTest( audio smartx diagnostic_test )
+  IasAddTest( audio smartx rtc_248800 )
+
+  IasGlobalPropertyAppend(IAS_COVERAGE_OFF_DIRS
+   ${CMAKE_CURRENT_SOURCE_DIR}/private/tst/**
+  )
+
+endif()
+

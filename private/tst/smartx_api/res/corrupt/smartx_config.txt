@@ -1,0 +1,26 @@
+# Logging options
+# Key is the context id and value is the log level
+# 'global' sets the overall log level
+# Possible log levels:
+#       off, fatal, error, warn, info, debug, verbose
+[loggsdafing]
+ofsdfsdyf=
+#fatal=
+#error=
+#warning=global
+#info=AHD SMX RB
+debug=RZN SMW
+#verbose=
+
+[logging]
+
+# The real-time thread scheduling configuration parameters
+# These parameters will be applied to all audio real-time
+# processing threads. The application has to have the permissions
+# to change the scheduling parameters
+# Possible values for policy:
+#     fifo, rr, cfs
+[scheduling.rt]
+posdaslicy=fifo
+priority=30
+

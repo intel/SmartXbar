@@ -1,0 +1,606 @@
+/*
+ * Copyright (C) 2018 Intel Corporation.All rights reserved.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+/**
+ * @file   IasEnvironmentTest.cpp
+ * @date   Sep20, 2012
+ * @brief Contains all integration tests for the IasAudioChainEnvironment class.
+ */
+#include <algorithm>
+#include "IasRtProcessingFwTest.hpp"
+#include "audio/smartx/IasProperties.hpp"
+
+
+namespace IasAudio {
+
+TEST_F(IasRtProcessingFwTest, SetAndGetProperties)
+{
+  IasProperties properties;
+  IasProperties::IasResult status;
+  const IasKeyList &keyList = properties.getPropertyKeys();
+
+  ASSERT_FALSE(properties.hasProperties());
+  int64_t myInt64 = 0x87654321AABBCCDDul;
+  properties.set("myInt64", myInt64);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(1u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  myInt64 = 0;
+  status = properties.get("myInt64", &myInt64);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(static_cast<int64_t>(0x87654321AABBCCDD), myInt64);
+  status = properties.get<int64_t>("myInt64", nullptr);
+  ASSERT_EQ(IasProperties::eIasInvalidParam, status);
+
+  int32_t myInt32 = -1234;
+  properties.set("myInt32", myInt32);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(2u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  myInt32 = 0;
+  status = properties.get("myInt32", &myInt32);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(-1234, myInt32);
+
+  double myFloat64 = 1.0l;
+  properties.set("myFloat64", myFloat64);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(3u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  myFloat64 = 0.0l;
+  status = properties.get("myFloat64", &myFloat64);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(1.0l, myFloat64);
+
+  float myFloat32 = 1.0f;
+  properties.set("myFloat32", myFloat32);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(4u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  myFloat32 = 0.0f;
+  status = properties.get("myFloat32", &myFloat32);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(1.0f, myFloat32);
+
+  std::string myString = "testString";
+  properties.set("myString", myString);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(5u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  myString = "";
+  status = properties.get("myString", &myString);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_TRUE(myString.compare("testString") == 0);
+
+  IasInt64Vector myVectorInt64;
+  myVectorInt64.resize(10);
+  myVectorInt64[0] = 0x1234567812345678;
+  myVectorInt64[9] = 0x8765432187654321;
+  properties.set("myVectorInt64", myVectorInt64);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(6u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  IasInt64Vector myTestVectorInt64;
+  myTestVectorInt64.resize(10);
+  myTestVectorInt64[0] = 0;
+  myTestVectorInt64[9] = 0;
+  status = properties.get("myVectorInt64", &myTestVectorInt64);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(0x1234567812345678, myTestVectorInt64[0]);
+  ASSERT_EQ(static_cast<int64_t>(0x8765432187654321), myTestVectorInt64[9]);
+
+  IasInt32Vector myVectorInt32;
+  myVectorInt32.resize(10);
+  myVectorInt32[0] = 0x12345678;
+  myVectorInt32[9] = 0x87654321;
+  properties.set("myVectorInt32", myVectorInt32);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(7u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  IasInt32Vector myTestVectorInt32;
+  myTestVectorInt32.resize(10);
+  myTestVectorInt32[0] = 0;
+  myTestVectorInt32[9] = 0;
+  status = properties.get("myVectorInt32", &myTestVectorInt32);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(0x12345678, myTestVectorInt32[0]);
+  ASSERT_EQ(static_cast<int32_t>(0x87654321), myTestVectorInt32[9]);
+
+  IasFloat64Vector myVectorFloat64;
+  myVectorFloat64.resize(10);
+  myVectorFloat64[0] = 1.0l;
+  myVectorFloat64[9] = 2.0l;
+  properties.set("myVectorFloat64", myVectorFloat64);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(8u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") != keyList.end());
+  IasFloat64Vector myTestVectorFloat64;
+  myTestVectorFloat64.resize(10);
+  myTestVectorFloat64[0] = 0.0l;
+  myTestVectorFloat64[9] = 0.0l;
+  status = properties.get("myVectorFloat64", &myTestVectorFloat64);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(1.0l, myTestVectorFloat64[0]);
+  ASSERT_EQ(2.0l, myTestVectorFloat64[9]);
+
+  IasFloat32Vector myVectorFloat32;
+  myVectorFloat32.resize(10);
+  myVectorFloat32[0] = 1.0f;
+  myVectorFloat32[9] = 2.0f;
+  properties.set("myVectorFloat32", myVectorFloat32);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(9u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") != keyList.end());
+  IasFloat32Vector myTestVectorFloat32;
+  myTestVectorFloat32.resize(10);
+  myTestVectorFloat32[0] = 0.0f;
+  myTestVectorFloat32[9] = 0.0f;
+  status = properties.get("myVectorFloat32", &myTestVectorFloat32);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(1.0f, myTestVectorFloat32[0]);
+  ASSERT_EQ(2.0f, myTestVectorFloat32[9]);
+
+  IasStringVector myVectorString;
+  myVectorString.resize(10);
+  myVectorString[0] = "test1";
+  myVectorString[9] = "test2";
+  properties.set("myVectorString", myVectorString);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(10u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorString") != keyList.end());
+  IasStringVector myTestVectorString;
+  myTestVectorString.resize(10);
+  myTestVectorString[0] = "";
+  myTestVectorString[9] = "";
+  status = properties.get("myVectorString", &myTestVectorString);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ("test1", myTestVectorString[0]);
+  ASSERT_EQ("test2", myTestVectorString[9]);
+
+  properties.clear("myInt64");
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(9u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorString") != keyList.end());
+  myInt64 = 0x87654321AABBCCDDul;
+  properties.set("myInt64", myInt64);
+  properties.clear("myInt32");
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(9u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorString") != keyList.end());
+  properties.clear("myInt64");
+  properties.clear("myFloat64");
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(7u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorString") != keyList.end());
+  properties.clear("myFloat32");
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(6u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorString") != keyList.end());
+  properties.clear("myString");
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(5u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorString") != keyList.end());
+  properties.clear("myVectorInt64");
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(4u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorString") != keyList.end());
+  properties.clear("myVectorInt32");
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(3u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorString") != keyList.end());
+  properties.clear("myVectorFloat64");
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(2u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorString") != keyList.end());
+  properties.clear("myVectorFloat32");
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(1u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorString") != keyList.end());
+  properties.clear("myVectorString");
+  ASSERT_FALSE(properties.hasProperties());
+  ASSERT_EQ(0u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") == keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorString") == keyList.end());
+}
+
+TEST_F(IasRtProcessingFwTest, SetAndGetPropertiesClearAll)
+{
+  IasProperties properties;
+  IasProperties::IasResult status;
+
+  ASSERT_FALSE(properties.hasProperties());
+  int64_t myInt64 = 0x87654321AABBCCDD;
+  properties.set("myInt64", myInt64);
+  ASSERT_TRUE(properties.hasProperties());
+  myInt64 = 0;
+  status = properties.get("myInt64", &myInt64);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(static_cast<int64_t>(0x87654321AABBCCDD), myInt64);
+
+  int32_t myInt32 = -1234;
+  properties.set("myInt32", myInt32);
+  ASSERT_TRUE(properties.hasProperties());
+  myInt32 = 0;
+  status = properties.get("myInt32", &myInt32);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(-1234, myInt32);
+
+  double myFloat64 = 1.0l;
+  properties.set("myFloat64", myFloat64);
+  ASSERT_TRUE(properties.hasProperties());
+  myFloat64 = 0.0l;
+  status = properties.get("myFloat64", &myFloat64);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(1.0l, myFloat64);
+
+  float myFloat32 = 1.0f;
+  properties.set("myFloat32", myFloat32);
+  ASSERT_TRUE(properties.hasProperties());
+  myFloat32 = 0.0f;
+  status = properties.get("myFloat32", &myFloat32);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(1.0f, myFloat32);
+
+  std::string myString = "testString";
+  properties.set("myString", myString);
+  ASSERT_TRUE(properties.hasProperties());
+  myString = "";
+  status = properties.get("myString", &myString);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_TRUE(myString.compare("testString") == 0);
+
+  properties.clearAll();
+  ASSERT_FALSE(properties.hasProperties());
+}
+
+TEST_F(IasRtProcessingFwTest, CopyProperties)
+{
+  IasProperties properties;
+  IasProperties::IasResult status;
+  const IasKeyList &keyList = properties.getPropertyKeys();
+
+  ASSERT_FALSE(properties.hasProperties());
+  int64_t myInt64 = 0x87654321AABBCCDD;
+  properties.set("myInt64", myInt64);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(1u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  myInt64 = 0;
+  status = properties.get("myInt64", &myInt64);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(static_cast<int64_t>(0x87654321AABBCCDD), myInt64);
+
+  int32_t myInt32 = -1234;
+  properties.set("myInt32", myInt32);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(2u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  myInt32 = 0;
+  status = properties.get("myInt32", &myInt32);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(-1234, myInt32);
+
+  double myFloat64 = 1.0l;
+  properties.set("myFloat64", myFloat64);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(3u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  myFloat64 = 0.0l;
+  status = properties.get("myFloat64", &myFloat64);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(1.0l, myFloat64);
+
+  float myFloat32 = 1.0f;
+  properties.set("myFloat32", myFloat32);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(4u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  myFloat32 = 0.0f;
+  status = properties.get("myFloat32", &myFloat32);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(1.0f, myFloat32);
+
+  std::string myString = "testString";
+  properties.set("myString", myString);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(5u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  myString = "";
+  status = properties.get("myString", &myString);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_TRUE(myString.compare("testString") == 0);
+
+  IasInt64Vector myVectorInt64;
+  myVectorInt64.resize(10);
+  myVectorInt64[0] = 0x1234567812345678;
+  myVectorInt64[9] = 0x8765432187654321;
+  properties.set("myVectorInt64", myVectorInt64);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(6u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  IasInt64Vector myTestVectorInt64;
+  myTestVectorInt64.resize(10);
+  myTestVectorInt64[0] = 0;
+  myTestVectorInt64[9] = 0;
+  status = properties.get("myVectorInt64", &myTestVectorInt64);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(0x1234567812345678, myTestVectorInt64[0]);
+  ASSERT_EQ(static_cast<int64_t>(0x8765432187654321), myTestVectorInt64[9]);
+
+  IasInt32Vector myVectorInt32;
+  myVectorInt32.resize(10);
+  myVectorInt32[0] = 0x12345678;
+  myVectorInt32[9] = 0x87654321;
+  properties.set("myVectorInt32", myVectorInt32);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(7u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  IasInt32Vector myTestVectorInt32;
+  myTestVectorInt32.resize(10);
+  myTestVectorInt32[0] = 0;
+  myTestVectorInt32[9] = 0;
+  status = properties.get("myVectorInt32", &myTestVectorInt32);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(0x12345678, myTestVectorInt32[0]);
+  ASSERT_EQ(static_cast<int32_t>(0x87654321), myTestVectorInt32[9]);
+
+  IasFloat64Vector myVectorFloat64;
+  myVectorFloat64.resize(10);
+  myVectorFloat64[0] = 1.0l;
+  myVectorFloat64[9] = 2.0l;
+  properties.set("myVectorFloat64", myVectorFloat64);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(8u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") != keyList.end());
+  IasFloat64Vector myTestVectorFloat64;
+  myTestVectorFloat64.resize(10);
+  myTestVectorFloat64[0] = 0.0l;
+  myTestVectorFloat64[9] = 0.0l;
+  status = properties.get("myVectorFloat64", &myTestVectorFloat64);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(1.0l, myTestVectorFloat64[0]);
+  ASSERT_EQ(2.0l, myTestVectorFloat64[9]);
+
+  IasFloat32Vector myVectorFloat32;
+  myVectorFloat32.resize(10);
+  myVectorFloat32[0] = 1.0f;
+  myVectorFloat32[9] = 2.0f;
+  properties.set("myVectorFloat32", myVectorFloat32);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(9u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") != keyList.end());
+  IasFloat32Vector myTestVectorFloat32;
+  myTestVectorFloat32.resize(10);
+  myTestVectorFloat32[0] = 0.0f;
+  myTestVectorFloat32[9] = 0.0f;
+  status = properties.get("myVectorFloat32", &myTestVectorFloat32);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ(1.0f, myTestVectorFloat32[0]);
+  ASSERT_EQ(2.0f, myTestVectorFloat32[9]);
+
+  IasStringVector myVectorString;
+  myVectorString.resize(10);
+  myVectorString[0] = "test1";
+  myVectorString[9] = "test2";
+  properties.set("myVectorString", myVectorString);
+  ASSERT_TRUE(properties.hasProperties());
+  ASSERT_EQ(10u, keyList.size());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myString") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorInt32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat64") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorFloat32") != keyList.end());
+  ASSERT_TRUE(std::find(keyList.begin(), keyList.end(), "myVectorString") != keyList.end());
+  IasStringVector myTestVectorString;
+  myTestVectorString.resize(10);
+  myTestVectorString[0] = "";
+  myTestVectorString[9] = "";
+  status = properties.get("myVectorString", &myTestVectorString);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ("test1", myTestVectorString[0]);
+  ASSERT_EQ("test2", myTestVectorString[9]);
+
+  IasProperties copiedProperties = properties;
+  const IasKeyList &copiedKeyList = copiedProperties.getPropertyKeys();
+  ASSERT_TRUE(copiedProperties.hasProperties());
+  ASSERT_EQ(10u, copiedKeyList.size());
+  ASSERT_TRUE(std::find(copiedKeyList.begin(), copiedKeyList.end(), "myInt64") != copiedKeyList.end());
+  ASSERT_TRUE(std::find(copiedKeyList.begin(), copiedKeyList.end(), "myInt32") != copiedKeyList.end());
+  ASSERT_TRUE(std::find(copiedKeyList.begin(), copiedKeyList.end(), "myFloat64") != copiedKeyList.end());
+  ASSERT_TRUE(std::find(copiedKeyList.begin(), copiedKeyList.end(), "myFloat32") != copiedKeyList.end());
+  ASSERT_TRUE(std::find(copiedKeyList.begin(), copiedKeyList.end(), "myString") != copiedKeyList.end());
+  ASSERT_TRUE(std::find(copiedKeyList.begin(), copiedKeyList.end(), "myVectorInt64") != copiedKeyList.end());
+  ASSERT_TRUE(std::find(copiedKeyList.begin(), copiedKeyList.end(), "myVectorInt32") != copiedKeyList.end());
+  ASSERT_TRUE(std::find(copiedKeyList.begin(), copiedKeyList.end(), "myVectorFloat64") != copiedKeyList.end());
+  ASSERT_TRUE(std::find(copiedKeyList.begin(), copiedKeyList.end(), "myVectorFloat32") != copiedKeyList.end());
+  ASSERT_TRUE(std::find(copiedKeyList.begin(), copiedKeyList.end(), "myVectorString") != copiedKeyList.end());
+  IasStringVector myTestVectorString2;
+  myTestVectorString2.resize(10);
+  myTestVectorString2[0] = "";
+  myTestVectorString2[9] = "";
+  status = properties.get("myVectorString", &myTestVectorString2);
+  ASSERT_EQ(IasProperties::eIasOk, status);
+  ASSERT_EQ("test1", myTestVectorString2[0]);
+  ASSERT_EQ("test2", myTestVectorString2[9]);
+  std::cout << "Sizeof properties=" << sizeof(properties) << std::endl;
+  std::cout << "Sizeof copiedProperties=" << sizeof(copiedProperties) << std::endl;
+}
+
+
+} // namespace IasAudio
