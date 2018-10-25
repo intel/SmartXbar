@@ -295,7 +295,7 @@ void IasConfigFile::load()
     {
       DLT_LOG_CXX(*mLog, DLT_LOG_INFO, LOG_PREFIX, "Config file", fullConfigPath.c_str(), "not found");
       // If it does not exist try current directory
-      fullConfigPath = ".";
+      fullConfigPath = "/usr/share/defaults/SmartXbar/";
       fullConfigPath /= cConfigFileName.c_str();
     }
   }

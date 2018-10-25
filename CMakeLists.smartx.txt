@@ -120,7 +120,7 @@ install( DIRECTORY public/inc/ DESTINATION include
          PATTERN "testfwx" EXCLUDE
          PATTERN "volumex" EXCLUDE )
 install( EXPORT ias-audio-smartx DESTINATION ${CMAKE_INSTALL_LIBDIR}/ias-audio-smartx )
-install( FILES public/res/smartx_config.txt DESTINATION /etc )
+install( FILES public/res/smartx_config.txt DESTINATION /usr/share/defaults/SmartXbar )
 
 #--------------------------------------------
 # ias-audio-helperx
