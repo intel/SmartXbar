@@ -31,6 +31,8 @@ if( NOT CMAKE_INSTALL_LIBDIR )
   message( "CMAKE_INSTALL_LIBDIR=${CMAKE_INSTALL_LIBDIR}" )
 endif()
 
+include_directories(/usr/include/dlt)
+
 include( CMakeLists.smartx.txt )
 include( private/tst/rtc_248800/CMakeLists.txt )
 include( private/tst/smartx_api_mutex/CMakeLists.txt )
