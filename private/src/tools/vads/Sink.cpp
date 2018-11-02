@@ -11,9 +11,9 @@
  **********************************************************************/
 #include <iostream>
 #include "smartx/IasSmartXClient.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBufferResult.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBufferResult.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "IasRingBufferTestReader.hpp"
 #include "Timer.hpp"
 #include "Sink.hpp"

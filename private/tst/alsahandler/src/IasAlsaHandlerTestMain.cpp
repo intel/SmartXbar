@@ -10,7 +10,7 @@
  */
 
 #include "gtest/gtest.h"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 #ifndef PLUGHW_DEVICE_NAME
 #define PLUGHW_DEVICE_NAME  "plughw:31,0"

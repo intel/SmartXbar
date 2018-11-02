@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "IasRingBufferTestReader.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
 
 namespace IasAudio
 {

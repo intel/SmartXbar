@@ -12,7 +12,7 @@
  * INCLUDES
  **********************************************************************/
 #include <vector>
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 
 //using namespace std;
 

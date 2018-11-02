@@ -12,7 +12,7 @@
 #ifndef IASICMDREGISTRATION_HPP_
 #define IASICMDREGISTRATION_HPP_
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 
 /**
  * @brief namespace IasAudio

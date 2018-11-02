@@ -9,13 +9,13 @@
 
 
 #include "switchmatrix/IasSwitchMatrixJob.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
-#include "internal/audio/common/IasDataProbe.hpp"
-#include "internal/audio/common/IasDataProbeHelper.hpp"
-#include "internal/audio/common/helper/IasCopyAudioAreaBuffers.hpp"
-#include "internal/audio/common/samplerateconverter/IasSrcWrapperBase.hpp"
-#include "internal/audio/common/samplerateconverter/IasSrcWrapper.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasDataProbe.hpp"
+#include "avbaudiomodules/internal/audio/common/IasDataProbeHelper.hpp"
+#include "avbaudiomodules/internal/audio/common/helper/IasCopyAudioAreaBuffers.hpp"
+#include "avbaudiomodules/internal/audio/common/samplerateconverter/IasSrcWrapperBase.hpp"
+#include "avbaudiomodules/internal/audio/common/samplerateconverter/IasSrcWrapper.hpp"
 #include "model/IasAudioPortOwner.hpp"
 #include "model/IasRoutingZone.hpp"
 

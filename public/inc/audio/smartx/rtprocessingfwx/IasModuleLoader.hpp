@@ -11,7 +11,7 @@
 #define _IASMODULELOADER_HPP_
 
 #include <audio/smartx/rtprocessingfwx/IasModuleInterface.hpp>
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 /**
  * @brief IasAudio

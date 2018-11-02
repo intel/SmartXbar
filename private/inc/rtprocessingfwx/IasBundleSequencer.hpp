@@ -12,7 +12,7 @@
 #ifndef IASBUNDLESEQUENCER_HPP_
 #define IASBUNDLESEQUENCER_HPP_
 
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 #include "smartx/IasAudioTypedefs.hpp"
 

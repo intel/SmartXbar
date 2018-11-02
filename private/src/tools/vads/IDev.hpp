@@ -14,7 +14,7 @@
 #include <string>
 #include <atomic>
 #include <thread>
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "Timing.hpp"
 
 /***********************************************************************

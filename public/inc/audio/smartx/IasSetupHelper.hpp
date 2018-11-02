@@ -13,7 +13,7 @@
 #define IASSETUPHELPER_HPP
 
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "audio/smartx/IasISetup.hpp"
 
 namespace IasAudio {

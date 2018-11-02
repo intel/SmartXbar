@@ -13,7 +13,7 @@
 
 #include <sndfile.h>
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "testfwx/IasTestFrameworkTypes.hpp"
 #include "model/IasAudioPin.hpp"
 

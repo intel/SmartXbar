@@ -13,8 +13,8 @@
 #define IASPROCESSINGMODULE_HPP_
 
 
-#include "audio/common/IasAudioCommonTypes.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 /*!
  * @brief namespace IasAudio

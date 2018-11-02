@@ -10,7 +10,7 @@
  */
 
 #include "audio/smartx/IasProperties.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 using namespace std;
 

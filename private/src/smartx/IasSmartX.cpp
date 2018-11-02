@@ -15,7 +15,7 @@
 #include "audio/smartx/IasIRouting.hpp"
 #include "audio/smartx/IasISetup.hpp"
 #include "IasSmartXPriv.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 
 namespace IasAudio {

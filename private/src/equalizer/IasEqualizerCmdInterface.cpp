@@ -13,7 +13,7 @@
 #include <cmath>
 
 #include "equalizer/IasEqualizerCmdInterface.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/equalizerx/IasEqualizerCmd.hpp"
 #include "equalizer/IasEqualizerCore.hpp"
 #include "filter/IasAudioFilter.hpp"

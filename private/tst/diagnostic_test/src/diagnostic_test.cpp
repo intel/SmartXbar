@@ -13,7 +13,7 @@
 
 #include "gtest/gtest.h"
 #include "core_libraries/foundation/IasTypes.hpp"
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "diagnostic/IasDiagnostic.hpp"
 #include "smartx/IasConfigFile.hpp"
 

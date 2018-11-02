@@ -13,7 +13,7 @@
 #define IASIDEBUG_HPP_
 
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 
 namespace IasAudio {
 

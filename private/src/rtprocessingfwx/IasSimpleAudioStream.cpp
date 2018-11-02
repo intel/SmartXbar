@@ -12,7 +12,7 @@
 #include <string.h>
 
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "rtprocessingfwx/IasAudioBuffer.hpp"
 #include "rtprocessingfwx/IasAudioBufferPool.hpp"
 #include "rtprocessingfwx/IasAudioBufferPoolHandler.hpp"

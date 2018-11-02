@@ -18,7 +18,7 @@
 #include <thread>
 #include <condition_variable>
 #include <atomic>
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "diagnostic/IasDiagnosticLogWriter.hpp"
 
 namespace IasAudio {

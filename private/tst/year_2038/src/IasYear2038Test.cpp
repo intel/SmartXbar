@@ -20,7 +20,7 @@
 
 #include "gtest/gtest.h"
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 
 
 using namespace IasAudio;

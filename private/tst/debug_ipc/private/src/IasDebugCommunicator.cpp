@@ -19,7 +19,7 @@
 #include "smartx/IasSetupImpl.hpp"
 #include "audio/smartx/IasSmartX.hpp"
 #include "smartx/IasSmartXPriv.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "smartx/IasDebugMutexDecorator.hpp"
 
 static IasAudio::IasDebugCommunicator *debugCommunicator = nullptr;

@@ -13,7 +13,7 @@
 
 #include "audio/smartx/rtprocessingfwx/IasGenericAudioComp.hpp"
 #include "audio/smartx/rtprocessingfwx/IasIModuleId.hpp" ///
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 namespace IasAudio {
 

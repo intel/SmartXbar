@@ -12,7 +12,7 @@
 #ifndef IASAUDIOSTREAM_HPP_
 #define IASAUDIOSTREAM_HPP_
 
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/smartx/rtprocessingfwx/IasBaseAudioStream.hpp"
 
 

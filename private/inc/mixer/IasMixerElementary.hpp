@@ -12,7 +12,7 @@
 #ifndef IASMIXERELEMENTARY_HPP_
 #define IASMIXERELEMENTARY_HPP_
 
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include <type_traits>
 #include "audio/smartx/rtprocessingfwx/IasProcessingTypes.hpp"
 #include "audio/smartx/rtprocessingfwx/IasAudioStream.hpp"

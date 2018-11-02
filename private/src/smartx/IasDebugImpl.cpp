@@ -12,8 +12,8 @@
 #include "IasDebugImpl.hpp"
 #include "model/IasRoutingZone.hpp"
 #include "model/IasRoutingZoneWorkerThread.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 #include "switchmatrix/IasSwitchMatrix.hpp"
 #include "smartx/IasSmartXClient.hpp"

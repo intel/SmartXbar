@@ -14,7 +14,7 @@
 
 #include <dlt/dlt.h>
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 
 
 #define TOSTRING(x) #x

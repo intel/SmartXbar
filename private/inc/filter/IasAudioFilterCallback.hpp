@@ -12,7 +12,7 @@
 #ifndef IASAUDIOFILTERCALLBACK_HPP_
 #define IASAUDIOFILTERCALLBACK_HPP_
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 
 namespace IasAudio {
 

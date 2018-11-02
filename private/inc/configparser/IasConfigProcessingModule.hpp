@@ -14,7 +14,7 @@
 
 #include "audio/smartx/IasProperties.hpp"
 #include "audio/smartx/IasISetup.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "configparser/IasConfigPipeline.hpp"
 #include <libxml2/libxml/parser.h>
 #include <vector>

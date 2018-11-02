@@ -16,7 +16,7 @@
 #include <libxml2/libxml/parser.h>
 #include <libxml2/libxml/tree.h>
 #include <iostream>
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 /*!
  * @brief To retrieve the node attribute value as string

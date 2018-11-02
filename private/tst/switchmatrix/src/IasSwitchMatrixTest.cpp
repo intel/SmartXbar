@@ -14,7 +14,7 @@
 #include <boost/pool/object_pool.hpp>
 
 #include "switchmatrix/IasSwitchMatrix.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
 #include "model/IasAudioPort.hpp"
 #include "model/IasAudioPortOwner.hpp"
 #include "switchmatrix/IasSwitchMatrixJob.hpp"
@@ -22,9 +22,9 @@
 #include "model/IasAudioSourceDevice.hpp"
 #include "model/IasAudioSinkDevice.hpp"
 #include "IasSwitchMatrixTest.hpp"
-#include "internal/audio/smartx_test_support/IasRingBufferTestWriter.hpp"
-#include "internal/audio/smartx_test_support/IasRingBufferTestReader.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/smartx_test_support/IasRingBufferTestWriter.hpp"
+#include "avbaudiomodules/internal/audio/smartx_test_support/IasRingBufferTestReader.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
 #include "audio/smartx/IasEventProvider.hpp"
 
 #ifndef NFS_PATH

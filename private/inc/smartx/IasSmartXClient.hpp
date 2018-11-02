@@ -16,9 +16,9 @@
 #include <atomic>
 #include <tbb/concurrent_queue.h>
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "audio/smartx/IasISetup.hpp"
-#include "internal/audio/common/alsa_smartx_plugin/IasAlsaPluginShmConnection.hpp"
+#include "avbaudiomodules/internal/audio/common/alsa_smartx_plugin/IasAlsaPluginShmConnection.hpp"
 #include "model/IasAudioDevice.hpp"
 
 namespace IasAudio {

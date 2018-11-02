@@ -10,7 +10,7 @@
  * INCLUDES
  **********************************************************************/
 #include <functional>
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "IDev.hpp"
 
 using namespace std;

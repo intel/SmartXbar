@@ -44,7 +44,7 @@
 #include "smartx/IasConfigFile.hpp"
 #include "IasSmartXClient.hpp"
 #include "IasSmartXPriv.hpp"
-#include "internal/audio/common/alsa_smartx_plugin/IasAlsaPluginIpc.hpp"
+#include "avbaudiomodules/internal/audio/common/alsa_smartx_plugin/IasAlsaPluginIpc.hpp"
 #include "audio/smartx/IasProperties.hpp"
 #include "rtprocessingfwx/IasCmdDispatcher.hpp"
 #include "smartx/IasProcessingImpl.hpp"

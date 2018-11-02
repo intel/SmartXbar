@@ -13,7 +13,7 @@
 #include <iomanip>
 #include <sched.h>
 #include "smartx/IasThreadNames.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 
 #ifndef RW_TMP_PATH

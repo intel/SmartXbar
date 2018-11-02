@@ -11,7 +11,7 @@
 
 #include "IasSetupImpl.hpp"
 
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
 #include "model/IasAudioSourceDevice.hpp"
 #include "model/IasAudioSinkDevice.hpp"
 #include "model/IasAudioPort.hpp"

@@ -16,7 +16,7 @@
 #include "helper/IasRamp.hpp"
 #include "audio/smartx/rtprocessingfwx/IasAudioStream.hpp"
 #include "audio/smartx/rtprocessingfwx/IasGenericAudioCompCore.hpp"
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "filter/IasAudioFilter.hpp"
 #include "audio/equalizerx/IasEqualizerCmd.hpp"
 

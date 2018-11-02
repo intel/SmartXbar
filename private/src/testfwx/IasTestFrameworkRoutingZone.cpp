@@ -14,10 +14,10 @@
 #include "model/IasAudioPort.hpp"
 #include "model/IasPipeline.hpp"
 
-#include "audio/common/IasAudioCommonTypes.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
 
 
 namespace IasAudio {

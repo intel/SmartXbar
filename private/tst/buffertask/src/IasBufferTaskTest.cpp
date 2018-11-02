@@ -11,11 +11,11 @@
 
 #include <iostream>
 #include "IasBufferTaskTest.hpp"
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "switchmatrix/IasBufferTask.hpp"
 #include "smartx/IasAudioTypedefs.hpp"
 #include "switchmatrix/IasSwitchMatrixJob.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
 #include "model/IasAudioSourceDevice.hpp"
 #include "model/IasAudioSinkDevice.hpp"
 #include "audio/smartx/IasSmartX.hpp"

@@ -10,11 +10,11 @@
  */
 
 #include "IasSmartXClient.hpp"
-#include "internal/audio/common/alsa_smartx_plugin/IasAlsaHwConstraintsStatic.hpp"
-#include "internal/audio/common/alsa_smartx_plugin/IasAlsaPluginIpc.hpp"
+#include "avbaudiomodules/internal/audio/common/alsa_smartx_plugin/IasAlsaHwConstraintsStatic.hpp"
+#include "avbaudiomodules/internal/audio/common/alsa_smartx_plugin/IasAlsaPluginIpc.hpp"
 
-#include "internal/audio/common/IasAudioLogging.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
 #include "smartx/IasThreadNames.hpp"
 #include "smartx/IasConfigFile.hpp"
 

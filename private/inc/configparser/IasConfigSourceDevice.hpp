@@ -17,12 +17,12 @@
 #include <libxml2/libxml/parser.h>
 #include <libxml2/libxml/tree.h>
 #include <libxml2/libxml/xmlmemory.h>
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "audio/smartx/IasISetup.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/smartx/IasSetupHelper.hpp"
-#include "audio/common/IasAudioCommonTypes.hpp"
-#include "audio/common/audiobuffer/IasMemoryAllocator.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/audiobuffer/IasMemoryAllocator.hpp"
 #include "smartx/IasAudioTypedefs.hpp"
 #include "model/IasAudioPortOwner.hpp"
 #include "smartx/IasSmartXClient.hpp"

@@ -12,7 +12,7 @@
 #ifndef IASAUDIOBUFFERPOOLHANDLER_HPP_
 #define IASAUDIOBUFFERPOOLHANDLER_HPP_
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 
 namespace IasAudio {
 

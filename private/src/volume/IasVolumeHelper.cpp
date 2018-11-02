@@ -13,7 +13,7 @@
 #include <array>
 #include "volume/IasVolumeHelper.hpp"
 #include "volume/IasVolumeLoudnessCore.hpp"
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "audio/smartx/IasProperties.hpp"
 
 

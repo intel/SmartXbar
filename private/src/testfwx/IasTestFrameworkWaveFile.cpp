@@ -10,8 +10,8 @@
  */
 
 #include "testfwx/IasTestFrameworkWaveFile.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
-#include "internal/audio/common/helper/IasCopyAudioAreaBuffers.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/helper/IasCopyAudioAreaBuffers.hpp"
 
 #include "model/IasAudioSourceDevice.hpp"
 #include "model/IasAudioSinkDevice.hpp"

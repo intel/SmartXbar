@@ -12,17 +12,17 @@
 #include <iomanip>
 #include <boost/algorithm/string/replace.hpp>
 
-#include "internal/audio/common/helper/IasThread.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
-#include "internal/audio/common/samplerateconverter/IasSrcFarrow.hpp"
-#include "internal/audio/common/samplerateconverter/IasSrcController.hpp"
+#include "avbaudiomodules/internal/audio/common/helper/IasThread.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/samplerateconverter/IasSrcFarrow.hpp"
+#include "avbaudiomodules/internal/audio/common/samplerateconverter/IasSrcController.hpp"
 #include "smartx/IasConfigFile.hpp"
 #include "audio/smartx/IasEventProvider.hpp"
-#include "internal/audio/common/helper/IasCopyAudioAreaBuffers.hpp"
+#include "avbaudiomodules/internal/audio/common/helper/IasCopyAudioAreaBuffers.hpp"
 #include "alsahandler/IasAlsaHandlerWorkerThread.hpp"
 #include "smartx/IasThreadNames.hpp"
-#include "internal/audio/common/helper/IasCopyAudioAreaBuffers.hpp"
+#include "avbaudiomodules/internal/audio/common/helper/IasCopyAudioAreaBuffers.hpp"
 #include "diagnostic/IasDiagnostic.hpp"
 
 #ifndef RW_TMP_PATH

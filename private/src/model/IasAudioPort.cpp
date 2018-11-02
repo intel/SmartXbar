@@ -8,7 +8,7 @@
  */
 
 #include "model/IasAudioPort.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
 #include "model/IasAudioDevice.hpp"
 #include "model/IasAudioPortOwner.hpp"
 

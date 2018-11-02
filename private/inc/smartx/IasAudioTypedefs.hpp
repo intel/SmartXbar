@@ -14,7 +14,7 @@
 
 #include <memory>
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "tbb/concurrent_queue.h"
 
 namespace IasAudio {

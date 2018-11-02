@@ -29,7 +29,7 @@
 #define PROFILE 0
 
 #if PROFILE
-#include "internal/audio/smartx_test_support/IasTimeStampCounter.hpp"
+#include "avbaudiomodules/internal/audio/smartx_test_support/IasTimeStampCounter.hpp"
 #endif
 
 #define NUM_CHANNELS_STREAM1   6

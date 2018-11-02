@@ -27,7 +27,7 @@
 #include "audio/configparser/IasSmartXconfigParser.hpp"
 #include "configparser/IasConfigParser.hpp"
 #include "configparser/IasParseHelper.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 using namespace std;
 

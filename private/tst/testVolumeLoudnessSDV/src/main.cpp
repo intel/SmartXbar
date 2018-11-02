@@ -16,7 +16,7 @@
 #include <iostream>
 #include <gtest/gtest.h>
 
-#include "internal/audio/smartx_test_support/IasTimeStampCounter.hpp"
+#include "avbaudiomodules/internal/audio/smartx_test_support/IasTimeStampCounter.hpp"
 #include "rtprocessingfwx/IasAudioChain.hpp"
 #include "audio/smartx/rtprocessingfwx/IasBundledAudioStream.hpp"
 #include "volume/IasVolumeLoudnessCore.hpp"

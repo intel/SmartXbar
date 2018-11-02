@@ -13,8 +13,8 @@
 #define AUDIO_DAEMON2_PRIVATE_INC_TESTFWX_IASTESTFRAMEWORKPRIV_HPP_
 
 
-#include "audio/common/IasAudioCommonTypes.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "testfwx/IasTestFrameworkTypes.hpp"
 #include "audio/testfwx/IasTestFramework.hpp"
 #include "smartx/IasAudioTypedefs.hpp"

@@ -10,9 +10,9 @@
  */
 
 #include "gtest/gtest.h"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "model/IasAudioDevice.hpp"
 #include "model/IasAudioPort.hpp"
 #include "model/IasAudioPin.hpp"
@@ -23,8 +23,8 @@
 #include "rtprocessingfwx/IasPluginEngine.hpp"
 #include "rtprocessingfwx/IasCmdDispatcher.hpp"
 #include "switchmatrix/IasSwitchMatrix.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
 #include "model/IasAudioSourceDevice.hpp"
 #include "model/IasAudioPortOwner.hpp"
 #include "model/IasRoutingZoneWorkerThread.hpp"

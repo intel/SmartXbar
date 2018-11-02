@@ -11,8 +11,8 @@
 
 #include <iostream>
 #include "version.h"
-#include "internal/audio/common/IasAudioLogging.hpp"
-#include "internal/audio/common/IasCommonVersion.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasCommonVersion.hpp"
 #include "audio/smartx/IasSmartX.hpp"
 #include "smartx/IasSmartXPriv.hpp"
 #include "smartx/IasRoutingImpl.hpp"

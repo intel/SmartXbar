@@ -15,7 +15,7 @@
 
 #include "smartx/IasConfiguration.hpp"
 #include "testfwx/IasTestFrameworkTypes.hpp"
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 
 /*!
  * @brief namespace IasAudio

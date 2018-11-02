@@ -16,8 +16,8 @@
 #include <atomic>
 
 #include "gtest/gtest.h"
-#include "internal/audio/common/IasAudioLogging.hpp"
-#include "internal/audio/common/alsa_smartx_plugin/IasAlsaPluginIpc.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/alsa_smartx_plugin/IasAlsaPluginIpc.hpp"
 
 #include "smartx/IasAudioTypedefs.hpp"
 #include "smartx/IasSmartXClient.hpp"

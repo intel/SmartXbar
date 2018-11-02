@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include "audio/smartx/rtprocessingfwx/IasAudioPlugin.hpp"
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "IasTestComp.hpp"
 
 using namespace IasAudio;

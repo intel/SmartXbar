@@ -16,7 +16,7 @@
 #include <time.h>
 #include <thread>
 
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/smartx/IasSmartX.hpp"
 #include "audio/smartx/IasISetup.hpp"
 #include "audio/smartx/IasIRouting.hpp"

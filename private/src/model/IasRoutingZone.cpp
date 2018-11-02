@@ -11,8 +11,8 @@
 
 #include <string>
 
-#include "internal/audio/common/IasAudioLogging.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
 #include "model/IasAudioPort.hpp"
 #include "model/IasAudioSinkDevice.hpp"
 #include "model/IasRoutingZoneWorkerThread.hpp"

@@ -17,7 +17,7 @@
 #include "rtprocessingfwx/IasAudioChainEnvironment.hpp"
 #include "rtprocessingfwx/IasBundleAssignment.hpp"
 #include "audio/smartx/rtprocessingfwx/IasAudioStream.hpp"
-#include "internal/audio/common/IasDataProbeHelper.hpp"
+#include "avbaudiomodules/internal/audio/common/IasDataProbeHelper.hpp"
 
 namespace IasAudio {
 

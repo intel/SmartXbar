@@ -13,7 +13,7 @@
 #include <sstream>
 #include <boost/property_tree/xml_parser.hpp>
 #include <boost/foreach.hpp>
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "Sink.hpp"
 #include "Source.hpp"
 #include "DevManager.hpp"

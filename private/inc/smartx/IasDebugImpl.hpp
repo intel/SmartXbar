@@ -13,8 +13,8 @@
 #define IASDEBUGIMPL_HPP
 
 
-#include "audio/common/IasAudioCommonTypes.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/smartx/IasIDebug.hpp"
 #include "IasConfiguration.hpp"
 #include "model/IasAudioPort.hpp"

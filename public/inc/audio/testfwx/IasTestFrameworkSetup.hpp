@@ -13,7 +13,7 @@
 #define AUDIO_DAEMON2_PUBLIC_INC_AUDIO_SMARTX_TESTFWX_IASTESTFRAMEWORKSETUP_HPP_
 
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "audio/testfwx/IasTestFrameworkPublicTypes.hpp"
 
 

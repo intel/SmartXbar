@@ -14,8 +14,8 @@
 #include <iomanip>
 #include <vector>
 
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
-#include "internal/audio/common/helper/IasCopyAudioAreaBuffers.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/helper/IasCopyAudioAreaBuffers.hpp"
 #include "audio/smartx/rtprocessingfwx/IasIGenericAudioCompConfig.hpp"
 #include "rtprocessingfwx/IasAudioChain.hpp"
 #include "rtprocessingfwx/IasPluginEngine.hpp"

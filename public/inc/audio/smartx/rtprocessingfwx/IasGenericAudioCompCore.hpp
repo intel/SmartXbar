@@ -12,8 +12,8 @@
 #ifndef IASGENERICAUDIOCOMPCORE_HPP_
 #define IASGENERICAUDIOCOMPCORE_HPP_
 
-#include "audio/common/IasAudioCommonTypes.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/smartx/rtprocessingfwx/IasProcessingTypes.hpp"
 
 // disable conversion warnings for tbb

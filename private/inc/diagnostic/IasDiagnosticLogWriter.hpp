@@ -17,7 +17,7 @@
 #include <thread>
 #include <condition_variable>
 #include <mutex>
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 
 namespace IasAudio {
 

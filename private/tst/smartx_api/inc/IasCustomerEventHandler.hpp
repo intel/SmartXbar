@@ -13,7 +13,7 @@
 #define IASCUSTOMEREVENTHANDLER_HPP
 
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "audio/smartx/IasEventHandler.hpp"
 #include "audio/smartx/IasConnectionEvent.hpp"
 

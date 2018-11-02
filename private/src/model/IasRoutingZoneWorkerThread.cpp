@@ -13,25 +13,25 @@
 #include <cmath>
 #include <boost/algorithm/string/replace.hpp>
 
-#include "internal/audio/common/helper/IasThread.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
-#include "internal/audio/common/helper/IasCopyAudioAreaBuffers.hpp"
+#include "avbaudiomodules/internal/audio/common/helper/IasThread.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/helper/IasCopyAudioAreaBuffers.hpp"
 #include "alsahandler/IasAlsaHandler.hpp"
 #include "smartx/IasSmartXClient.hpp"
 #include "switchmatrix/IasSwitchMatrix.hpp"
 #include "smartx/IasConfigFile.hpp"
 #include "audio/smartx/IasEventProvider.hpp"
 #include "audio/smartx/IasSetupEvent.hpp"
-#include "internal/audio/common/IasDataProbe.hpp"
-#include "internal/audio/common/IasDataProbeHelper.hpp"
+#include "avbaudiomodules/internal/audio/common/IasDataProbe.hpp"
+#include "avbaudiomodules/internal/audio/common/IasDataProbeHelper.hpp"
 #include "model/IasPipeline.hpp"
 #include "model/IasAudioSinkDevice.hpp"
 #include "model/IasRoutingZoneWorkerThread.hpp"
 #include "model/IasAudioPort.hpp"
 #include "smartx/IasThreadNames.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBufferMirror.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBufferMirror.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
 
 namespace IasAudio {
 

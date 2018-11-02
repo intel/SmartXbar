@@ -10,7 +10,7 @@
 
 #include <gtest/gtest.h>
 #include "audio/configparser/IasSmartXDebugFacade.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 
 namespace IasAudio {

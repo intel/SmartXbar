@@ -13,10 +13,10 @@
 #include <time.h>
 #include <alsa/asoundlib.h>
 
-#include "internal/audio/common/IasAudioLogging.hpp"
-#include "internal/audio/common/IasAlsaTypeConversion.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAlsaTypeConversion.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
 #include "alsahandler/IasAlsaHandlerWorkerThread.hpp"
 #include "alsahandler/IasAlsaHandler.hpp"
 #include "model/IasRoutingZone.hpp"

@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include "IasRingBufferTestWriter.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
 
 namespace IasAudio
 {

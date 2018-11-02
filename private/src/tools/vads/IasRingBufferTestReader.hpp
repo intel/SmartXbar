@@ -13,7 +13,7 @@
 #define IASRINGBUFFERTESTREADER_HPP_
 
 #include <sndfile.h>
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
 
 namespace IasAudio
 {

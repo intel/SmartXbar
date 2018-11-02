@@ -13,8 +13,8 @@
 #include <stdlib.h>
 #include <sndfile.h>
 
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
-#include "internal/audio/common/IasAlsaTypeConversion.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAlsaTypeConversion.hpp"
 #include "IasAlsaHandlerTest.hpp"
 
 #ifndef RW_PATH

@@ -15,7 +15,7 @@
 #include <iostream>
 #include <vector>
 #include <boost/property_tree/ptree.hpp>
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "Timing.hpp"
 #include "IDev.hpp"
 

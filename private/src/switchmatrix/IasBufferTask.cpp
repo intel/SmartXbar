@@ -9,11 +9,11 @@
 
 
 #include "switchmatrix/IasBufferTask.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
-#include "internal/audio/common/IasDataProbe.hpp"
-#include "internal/audio/common/IasDataProbeHelper.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/IasDataProbe.hpp"
+#include "avbaudiomodules/internal/audio/common/IasDataProbeHelper.hpp"
 #include "switchmatrix/IasSwitchMatrixJob.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/smartx/IasEventProvider.hpp"
 #include "audio/smartx/IasConnectionEvent.hpp"
 #include "model/IasAudioPortOwner.hpp"

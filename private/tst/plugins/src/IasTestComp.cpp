@@ -16,7 +16,7 @@
 // syntax checks
 #include "../../plugins/inc/IasTestComp.hpp"
 #include "audio/smartx/rtprocessingfwx/IasGenericAudioCompCore.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 DLT_IMPORT_CONTEXT(tstCtx);
 

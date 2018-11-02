@@ -13,7 +13,7 @@
 #define IASPLUGINENGINE_HPP_
 
 #include <audio/smartx/rtprocessingfwx/IasModuleLoader.hpp>
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 
 #include "audio/smartx/rtprocessingfwx/IasProcessingTypes.hpp"

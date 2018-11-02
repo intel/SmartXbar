@@ -28,7 +28,7 @@
 #include <malloc.h>
 #include <math.h>
 
-#include "internal/audio/smartx_test_support/IasTimeStampCounter.hpp"
+#include "avbaudiomodules/internal/audio/smartx_test_support/IasTimeStampCounter.hpp"
 #include "filter/IasAudioFilter.hpp"
 
 /*

@@ -10,7 +10,7 @@
 #ifndef _IASMODULEINTERFACE_HPP
 #define _IASMODULEINTERFACE_HPP
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 
 /**
  * @brief IasAudio

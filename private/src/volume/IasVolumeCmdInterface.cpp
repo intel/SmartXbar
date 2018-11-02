@@ -10,7 +10,7 @@
  */
 
 #include "volume/IasVolumeCmdInterface.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/volumex/IasVolumeCmd.hpp"
 #include "audio/smartx/rtprocessingfwx/IasIModuleId.hpp"
 #include "helper/IasRamp.hpp"

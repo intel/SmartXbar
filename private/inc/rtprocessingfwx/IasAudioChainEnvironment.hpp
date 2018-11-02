@@ -12,7 +12,7 @@
 #ifndef IASAUDIOCHAINENVIRONMENT_HPP_
 #define IASAUDIOCHAINENVIRONMENT_HPP_
 
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/smartx/rtprocessingfwx/IasProcessingTypes.hpp"
 
 namespace IasAudio {

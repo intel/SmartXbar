@@ -10,7 +10,7 @@
 #include <thread>
 #include <future>
 #include "gtest/gtest.h"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/smartx/IasSmartX.hpp"
 #include "audio/smartx/IasSetupHelper.hpp"
 #include "alsa/asoundlib.h"

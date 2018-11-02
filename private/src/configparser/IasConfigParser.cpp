@@ -19,7 +19,7 @@
 #include "configparser/IasConfigSourceDevice.hpp"
 #include "audio/configparser/IasSmartXconfigParser.hpp"
 #include "audio/smartx/IasIRouting.hpp"
-#include "audio/common/audiobuffer/IasMemoryAllocator.hpp"
+#include "avbaudiomodules/audio/common/audiobuffer/IasMemoryAllocator.hpp"
 
 
 namespace IasAudio {

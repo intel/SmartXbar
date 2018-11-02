@@ -10,14 +10,14 @@
 #include <audio/smartx/IasSmartX.hpp>
 #include <audio/smartx/IasSetupHelper.hpp>
 #include <audio/smartx/IasIRouting.hpp>
-#include <internal/audio/common/IasAudioLogging.hpp>
-#include <internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp>
+#include <avbaudiomodules/internal/audio/common/IasAudioLogging.hpp>
+#include <avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp>
 #include <smartx/IasAudioTypedefs.hpp>
 #include <switchmatrix/IasSwitchMatrix.hpp>
 #include <model/IasAudioPort.hpp>
 #include <model/IasAudioSourceDevice.hpp>
 #include <model/IasAudioSinkDevice.hpp>
-#include <audio/common/IasAudioCommonTypes.hpp>
+#include <avbaudiomodules/audio/common/IasAudioCommonTypes.hpp>
 
 using namespace IasAudio;
 using namespace std;

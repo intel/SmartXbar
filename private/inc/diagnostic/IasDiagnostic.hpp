@@ -11,7 +11,7 @@
 #define IASDIAGNOSTIC_HPP
 
 #include "diagnostic/IasDiagnosticStream.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include <cstdint>
 #include <cmath>
 #include <list>

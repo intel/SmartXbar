@@ -875,7 +875,7 @@ This is how the plug-in library file looks at the end, after putting everything 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~{.cpp}
 #include "audio/smartx/rtprocessingfwx/IasAudioPlugin.hpp"
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "audio/simplevolume/IasSimpleVolumeCmd.hpp"
 #include "audio/simplevolume/IasSimpleVolumeCore.hpp"
 

@@ -14,8 +14,8 @@
 #include <math.h>
 
 
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
-#include "internal/audio/common/IasAlsaTypeConversion.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAlsaTypeConversion.hpp"
 #include "IasAlsaHandlerTest.hpp"
 
 // Name of the ALSA device, defined and initialized in IasAlsaHandlerTestMain.cpp

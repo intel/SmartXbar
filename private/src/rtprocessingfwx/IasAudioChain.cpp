@@ -15,7 +15,7 @@
 #include "audio/smartx/rtprocessingfwx/IasAudioStream.hpp"
 #include "audio/smartx/rtprocessingfwx/IasGenericAudioComp.hpp"
 #include "audio/smartx/rtprocessingfwx/IasGenericAudioCompCore.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/smartx/rtprocessingfwx/IasIModuleId.hpp"
 
 

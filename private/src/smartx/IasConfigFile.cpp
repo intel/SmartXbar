@@ -20,7 +20,7 @@
 #include <exception>
 #include <dlt/dlt_types.h>
 #include "IasConfigFile.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 #ifndef SMARTX_CFG_DIR
 #define SMARTX_CFG_DIR "/etc/"

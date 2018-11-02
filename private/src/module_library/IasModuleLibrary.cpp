@@ -10,7 +10,7 @@
  */
 
 #include "audio/smartx/rtprocessingfwx/IasAudioPlugin.hpp"
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "volume/IasVolumeLoudnessCore.hpp"
 #include "volume/IasVolumeCmdInterface.hpp"
 #include "mixer/IasMixerCore.hpp"

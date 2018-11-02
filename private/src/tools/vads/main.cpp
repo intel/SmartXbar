@@ -13,11 +13,11 @@
 #include <iostream>
 #include <thread>
 #include <boost/program_options.hpp>
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "smartx/IasConfigFile.hpp"
 #include "smartx/IasSmartXClient.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "IasRingBufferTestReader.hpp"
 #include "IasRingBufferTestWriter.hpp"
 #include "DevManager.hpp"

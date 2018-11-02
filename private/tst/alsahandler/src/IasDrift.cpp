@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <iostream>
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "IasDrift.hpp"
 
 using namespace std;

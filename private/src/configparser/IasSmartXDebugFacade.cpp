@@ -10,7 +10,7 @@
  */
 
 #include "audio/configparser/IasSmartXDebugFacade.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/smartx/IasSetupHelper.hpp"
 #include "audio/smartx/IasIRouting.hpp"
 #include "audio/smartx/IasIProcessing.hpp"

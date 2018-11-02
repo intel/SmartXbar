@@ -10,7 +10,7 @@
 
 #include "IasSmartXClient.hpp"
 #include "alsahandler/IasAlsaHandler.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "model/IasAudioPort.hpp"
 #include "model/IasAudioDevice.hpp"
 

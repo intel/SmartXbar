@@ -10,8 +10,8 @@
 #ifndef IASBUFFERTASK_HPP_
 #define IASBUFFERTASK_HPP_
 
-#include "audio/common/IasAudioCommonTypes.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "smartx/IasAudioTypedefs.hpp"
 #include "tbb/concurrent_queue.h"
 #include <set>

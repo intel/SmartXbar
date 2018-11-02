@@ -14,7 +14,7 @@
 #include "model/IasAudioPort.hpp"
 #include "model/IasAudioPortOwner.hpp"
 #include "switchmatrix/IasSwitchMatrix.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "diagnostic/IasDiagnostic.hpp"
 
 namespace IasAudio {

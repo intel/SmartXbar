@@ -11,7 +11,7 @@
 #define IASAUDIOPORTOWNER_HPP_
 
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "smartx/IasAudioTypedefs.hpp"
 
 /*!

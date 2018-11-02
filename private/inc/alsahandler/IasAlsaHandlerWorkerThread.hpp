@@ -14,8 +14,8 @@
 
 #include <fstream>
 
-#include "internal/audio/common/IasAudioLogging.hpp"
-#include "internal/audio/common/helper/IasIRunnable.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/helper/IasIRunnable.hpp"
 #include "diagnostic/IasDiagnostic.hpp"
 #include "smartx/IasAudioTypedefs.hpp"
 

@@ -13,7 +13,7 @@
 #include <cmath>
 
 #include "mixer/IasMixerCmdInterface.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/mixerx/IasMixerCmd.hpp"
 #include "mixer/IasMixerCore.hpp"
 

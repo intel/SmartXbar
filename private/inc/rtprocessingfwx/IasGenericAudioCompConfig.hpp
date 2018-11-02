@@ -13,7 +13,7 @@
 #define IASGENERICAUDIOCOMPCONFIG_HPP_
 
 #include "audio/smartx/rtprocessingfwx/IasIGenericAudioCompConfig.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 
 #include "audio/smartx/IasProperties.hpp"

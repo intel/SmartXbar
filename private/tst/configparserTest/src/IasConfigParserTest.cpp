@@ -20,7 +20,7 @@
 #include <dlt/dlt.h>
 #include <IasAudioDataComparer.hpp>
 #include "audio/smartx/IasSetupHelper.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/configparser/IasSmartXconfigParser.hpp"
 #include "configparser/IasParseHelper.hpp"
 #include "audio/smartx/IasSmartX.hpp"

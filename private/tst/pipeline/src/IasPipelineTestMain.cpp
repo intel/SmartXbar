@@ -10,7 +10,7 @@
  */
 
 #include <gtest/gtest.h>
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 
 static void printWelcomeMessage()

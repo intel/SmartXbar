@@ -31,9 +31,9 @@
 #include "switchmatrix/IasSwitchMatrix.hpp"
 #include "audio/volumex/IasVolumeCmd.hpp"     // the header file of the volume plug-in module
 
-#include "internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
-#include "internal/audio/smartx_test_support/IasRingBufferTestWriter.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBufferFactory.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/smartx_test_support/IasRingBufferTestWriter.hpp"
 
 #include "IasMySimplePipeline.hpp"
 #include "IasMyComplexPipeline.hpp"

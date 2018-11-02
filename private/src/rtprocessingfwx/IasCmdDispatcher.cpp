@@ -11,7 +11,7 @@
 
 #include "rtprocessingfwx/IasCmdDispatcher.hpp"
 #include "audio/smartx/rtprocessingfwx/IasIModuleId.hpp"
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 
 namespace IasAudio {
 

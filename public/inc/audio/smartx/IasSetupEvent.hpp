@@ -13,7 +13,7 @@
 #define IASSETUPEVENT_HPP
 
 
-#include "audio/common/IasAudioCommonTypes.hpp"
+#include "avbaudiomodules/audio/common/IasAudioCommonTypes.hpp"
 #include "audio/smartx/IasEvent.hpp"
 
 namespace IasAudio {

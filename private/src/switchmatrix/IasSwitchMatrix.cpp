@@ -14,7 +14,7 @@
 
 #include "switchmatrix/IasBufferTask.hpp"
 #include "switchmatrix/IasSwitchMatrixJob.hpp"
-#include "internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
+#include "avbaudiomodules/internal/audio/common/audiobuffer/IasAudioRingBuffer.hpp"
 #include "smartx/IasConfigFile.hpp"
 
 namespace IasAudio {

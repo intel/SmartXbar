@@ -12,7 +12,7 @@
 #ifndef IASAUDIOCHAIN_HPP_
 #define IASAUDIOCHAIN_HPP_
 
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "rtprocessingfwx/IasAudioChainEnvironment.hpp"
 #include "rtprocessingfwx/IasBundleSequencer.hpp"
 

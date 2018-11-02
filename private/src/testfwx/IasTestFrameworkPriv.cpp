@@ -20,7 +20,7 @@
 #include "rtprocessingfwx/IasPluginEngine.hpp"
 #include "audio/smartx/IasEventProvider.hpp"
 
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "model/IasPipeline.hpp"
 
 

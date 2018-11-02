@@ -9,7 +9,7 @@
  * @brief
  */
 
-#include "internal/audio/common/IasAudioLogging.hpp"
+#include "avbaudiomodules/internal/audio/common/IasAudioLogging.hpp"
 #include "audio/smartx/rtprocessingfwx/IasICmdRegistration.hpp"
 #include "audio/smartx/rtprocessingfwx/IasAudioPlugin.hpp"
 #include "IasSimpleVolumeCmd.hpp"

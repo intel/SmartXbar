@@ -14,7 +14,7 @@
 
 #include <fstream>
 
-#include "internal/audio/common/helper/IasIRunnable.hpp"
+#include "avbaudiomodules/internal/audio/common/helper/IasIRunnable.hpp"
 #include "IasAudioTypedefs.hpp"
 #include <mutex>
 #include <atomic>
