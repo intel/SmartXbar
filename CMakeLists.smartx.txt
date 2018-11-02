@@ -97,6 +97,12 @@ target_include_directories( ias-audio-smartx PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public/inc>
   $<INSTALL_INTERFACE:public/inc> )
 
+find_package(PkgConfig REQUIRED)
+include_directories( ${AUDIO_INCLUDE_DIRS} )
+pkg_check_modules(AUDIO REQUIRED AudioCommon)
+
+target_include_directories( ias-audio-smartx PUBLIC ${AUDIO_INCLUDE_DIRS})
+
 find_library(DLT_LIBRARY dlt)
 
 target_link_libraries( ias-audio-smartx ${DLT_LIBRARY} )
@@ -106,7 +112,7 @@ target_link_libraries( ias-audio-smartx boost_filesystem )
 target_link_libraries( ias-audio-smartx boost_program_options )
 target_link_libraries( ias-audio-smartx asound )
 target_link_libraries( ias-audio-smartx sndfile )
-target_link_libraries( ias-audio-smartx ias-audio-common )
+target_link_libraries( ias-audio-smartx ${AUDIO_LDFLAGS} )
 
 install( TARGETS ias-audio-smartx EXPORT ias-audio-smartx
          LIBRARY
@@ -140,6 +146,7 @@ target_compile_options( ias-audio-helperx PUBLIC -fPIC )
 
 target_include_directories( ias-audio-helperx PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/private/inc )
 target_include_directories( ias-audio-helperx PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/public/inc )
+target_include_directories( ias-audio-helperx PUBLIC ${AUDIO_INCLUDE_DIRS})
 
 target_link_libraries( ias-audio-helperx ias-audio-smartx )
 
@@ -169,7 +176,7 @@ target_compile_options( ias-audio-filterx PUBLIC -fPIC )
 
 target_include_directories( ias-audio-filterx PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/private/inc )
 
-target_link_libraries( ias-audio-filterx ias-audio-common )
+target_link_libraries( ias-audio-filterx ${AUDIO_LDFLAGS} )
 target_link_libraries( ias-audio-filterx ias-audio-smartx )
 
 install( TARGETS ias-audio-filterx EXPORT ias-audio-filterx
@@ -201,6 +208,7 @@ target_include_directories( ias-audio-volumex PRIVATE ${CMAKE_CURRENT_SOURCE_DIR
 target_include_directories( ias-audio-volumex PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public/inc>
   $<INSTALL_INTERFACE:public/inc> )
+target_include_directories( ias-audio-volumex PUBLIC ${AUDIO_INCLUDE_DIRS})
 
 target_link_libraries( ias-audio-volumex ias-audio-smartx )
 target_link_libraries( ias-audio-volumex ias-audio-helperx )
@@ -242,6 +250,7 @@ target_include_directories( ias-audio-mixerx PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
 target_include_directories( ias-audio-mixerx PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public/inc>
   $<INSTALL_INTERFACE:public/inc> )
+target_include_directories( ias-audio-mixerx PUBLIC ${AUDIO_INCLUDE_DIRS})
 
 target_link_libraries( ias-audio-mixerx ias-audio-smartx )
 target_link_libraries( ias-audio-mixerx ias-audio-helperx )
@@ -283,6 +292,7 @@ target_include_directories( ias-audio-equalizerx PRIVATE ${CMAKE_CURRENT_SOURCE_
 target_include_directories( ias-audio-equalizerx PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public/inc>
   $<INSTALL_INTERFACE:public/inc> )
+target_include_directories( ias-audio-equalizerx PUBLIC ${AUDIO_INCLUDE_DIRS})
 
 target_link_libraries( ias-audio-equalizerx ias-audio-smartx )
 target_link_libraries( ias-audio-equalizerx ias-audio-helperx )
@@ -357,6 +367,7 @@ target_include_directories( ias-audio-testfwx PRIVATE ${CMAKE_CURRENT_SOURCE_DIR
 target_include_directories( ias-audio-testfwx PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public/inc>
   $<INSTALL_INTERFACE:public/inc> )
+target_include_directories( ias-audio-testfwx PUBLIC ${AUDIO_INCLUDE_DIRS})
 
 target_link_libraries( ias-audio-testfwx boost_system )
 target_link_libraries( ias-audio-testfwx boost_filesystem )
