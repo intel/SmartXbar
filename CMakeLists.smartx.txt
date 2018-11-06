@@ -100,6 +100,8 @@ target_include_directories( ias-audio-smartx PUBLIC
 find_package(PkgConfig REQUIRED)
 include_directories( ${AUDIO_INCLUDE_DIRS} )
 pkg_check_modules(AUDIO REQUIRED AudioCommon)
+pkg_check_modules(DLT REQUIRED automotive-dlt)
+pkg_check_modules(DLT REQUIRED automotive-dlt-c++)
 
 target_include_directories( ias-audio-smartx PUBLIC ${AUDIO_INCLUDE_DIRS})
 
