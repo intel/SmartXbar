@@ -1,0 +1,11 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=@CMAKE_INSTALL_PREFIX@
+libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
+includedir=${exec_prefix}/include
+
+Name: SmartXbar
+Description: SmartXbar
+Version: @AUDIO_SMARTX_VERSION_STRING@
+Requires:
+Libs: -L${libdir} -lias-audio-smartx -lias-audio-configparser
+Cflags: -I${includedir}/smartxbar
