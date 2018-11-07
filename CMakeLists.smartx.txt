@@ -121,7 +121,7 @@ install( TARGETS ias-audio-smartx EXPORT ias-audio-smartx
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Libraries
 )
-install( DIRECTORY public/inc/ DESTINATION include
+install( DIRECTORY public/inc/ DESTINATION include/smartxbar
          PATTERN "configparser" EXCLUDE
          PATTERN "equalizerx" EXCLUDE
          PATTERN "mixerx" EXCLUDE
@@ -222,7 +222,7 @@ install( TARGETS ias-audio-volumex EXPORT ias-audio-volumex
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development
 )
-install( DIRECTORY public/inc/ DESTINATION include
+install( DIRECTORY public/inc/ DESTINATION include/smartxbar
          PATTERN "configparser" EXCLUDE
          PATTERN "equalizerx" EXCLUDE
          PATTERN "mixerx" EXCLUDE
@@ -264,7 +264,7 @@ install( TARGETS ias-audio-mixerx EXPORT ias-audio-mixerx
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development
 )
-install( DIRECTORY public/inc/ DESTINATION include
+install( DIRECTORY public/inc/ DESTINATION include/smartxbar
          PATTERN "configparser" EXCLUDE
          PATTERN "equalizerx" EXCLUDE
          PATTERN "smartx" EXCLUDE
@@ -306,7 +306,7 @@ install( TARGETS ias-audio-equalizerx EXPORT ias-audio-equalizerx
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Development
 )
-install( DIRECTORY public/inc/ DESTINATION include
+install( DIRECTORY public/inc/ DESTINATION include/smartxbar
          PATTERN "configparser" EXCLUDE
          PATTERN "mixerx" EXCLUDE
          PATTERN "smartx" EXCLUDE
@@ -382,7 +382,7 @@ install( TARGETS ias-audio-testfwx EXPORT ias-audio-testfwx
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Libraries
 )
-install( DIRECTORY public/inc/ DESTINATION include
+install( DIRECTORY public/inc/ DESTINATION include/smartxbar
          PATTERN "configparser" EXCLUDE
          PATTERN "equalizerx" EXCLUDE
          PATTERN "mixerx" EXCLUDE
@@ -429,7 +429,7 @@ install( TARGETS ias-audio-configparser EXPORT ias-audio-configparser
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             COMPONENT Libraries
 )
-install( DIRECTORY public/inc/ DESTINATION include
+install( DIRECTORY public/inc/ DESTINATION include/smartxbar
          PATTERN "equalizerx" EXCLUDE
          PATTERN "mixerx" EXCLUDE
          PATTERN "smartx" EXCLUDE
