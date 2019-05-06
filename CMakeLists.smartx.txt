@@ -436,3 +436,37 @@ install( DIRECTORY public/inc/ DESTINATION include/smartxbar
          PATTERN "testfwx" EXCLUDE
          PATTERN "volumex" EXCLUDE )
 install( EXPORT ias-audio-configparser DESTINATION ${CMAKE_INSTALL_LIBDIR}/ias-audio-smartx )
+
+
+#-----------------------------------------
+# ias-audio-plugin_library_example
+#-----------------------------------------
+add_library( ias-audio-plugin_library_example MODULE
+  private/apps/simplevolume/src/IasSimpleVolumeCmd.cpp
+  private/apps/simplevolume/src/IasSimpleVolumeCore.cpp
+  private/apps/simplemixer/src/IasSimpleMixerCmd.cpp
+  private/apps/simplemixer/src/IasSimpleMixerCore.cpp
+  private/apps/plugin_library_example/src/IasMyPluginLibrary.cpp
+)
+
+target_compile_options( ias-audio-plugin_library_example PUBLIC -ffast-math )
+target_compile_options( ias-audio-plugin_library_example PUBLIC --std=c++11 )
+target_compile_options( ias-audio-plugin_library_example PUBLIC -msse )
+target_compile_options( ias-audio-plugin_library_example PUBLIC -msse2 )
+target_compile_options( ias-audio-plugin_library_example PUBLIC -O3 )
+target_compile_options( ias-audio-plugin_library_example PUBLIC -fPIC )
+target_compile_options( ias-audio-plugin_library_example PUBLIC -DPIC )
+
+target_include_directories( ias-audio-plugin_library_example PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/private/inc )
+target_include_directories( ias-audio-plugin_library_example PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public/inc>
+  $<INSTALL_INTERFACE:public/inc> )
+target_link_libraries( ias-audio-plugin_library_example tbb )
+
+set_target_properties( ias-audio-plugin_library_example PROPERTIES PREFIX "plugin")
+install( TARGETS ias-audio-plugin_library_example EXPORT ias-audio-plugin_library_example
+         LIBRARY
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}/smartx-plugin
+            COMPONENT Libraries
+)
+install( EXPORT ias-audio-plugin_library_example DESTINATION ${CMAKE_INSTALL_LIBDIR}/ias-audio-smartx )

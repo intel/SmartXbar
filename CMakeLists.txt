@@ -41,6 +41,10 @@ include( private/tst/rtc_248800/CMakeLists.txt )
 include( private/tst/smartx_api_mutex/CMakeLists.txt )
 include( private/tst/plugin_use_cases_tst/CMakeLists.txt )
 include( private/src/tools/vads/CMakeLists.txt )
+include( private/apps/alsa_playback_example/CMakeLists.txt )
+include( private/apps/smartx_interactive_example/CMakeLists.txt )
+include( private/apps/alsa_capture_example/CMakeLists.txt )
+include( private/apps/simplemixer_testapp/CMakeLists.txt )
 
 #add_custom_command( TARGET public-doc-audio-SmartXbar-copy-api
 #                    PRE_BUILD
