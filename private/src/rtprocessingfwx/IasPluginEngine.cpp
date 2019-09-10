@@ -56,7 +56,13 @@ IasAudioProcessingResult IasPluginEngine::loadPluginLibraries()
   const char *pluginDirEnv = getenv(cIasPluginDirEnv);
   if (pluginDirEnv == NULL)
   {
-    pluginDir = "/opt/audio/plugin/";
+#if __GNUC__
+	#if __x86_64__
+		pluginDir = "/usr/lib64/smartx-plugin/";
+	#else
+		pluginDir = "/usr/lib/smartx-plugin/";
+	#endif
+#endif
   }
   else
   {
